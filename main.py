@@ -346,7 +346,7 @@ def sceltaMacchina():
                             st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata']}")
        with col2top:
               with st.container(border=True):
-                     st.image(f"{config.macchinaMitsubishi[f"BTU{int(BTUMitsubishi)}"]["immagine"]}")
+                     st.image(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['immagine']}")
                      flagMitsubishi = st.checkbox(f"**{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['descrizione']}**",value=st.session_state.flagMitsubishi,on_change=lambda: (setattr(st.session_state, 'flagMitsubishi', True), setattr(st.session_state, 'flagHaier', False)) if not st.session_state.flagMitsubishi else None)
                      st.session_state.flagMitsubishi = flagMitsubishi
                      st.write(" ")
