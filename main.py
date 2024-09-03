@@ -367,7 +367,7 @@ def sceltaMacchina():
                             st.write("**Consumo energetico annuo**")
                             st.caption(f"{config.macchinaMitsubishi[f"BTU{int(BTUMitsubishi)}"]["Riscaldamento - consumo energetico annuo (kWh/a)"]} kWh/a")
                             st.write("**Costo energetico annuo**")
-                            st.caption(f"{config.macchinaMitsubishi[f"BTU{int(BTUMitsubishi)}"]["Riscaldamento - costo energetico annuo (€/a)"]}€/a")
+                            st.caption(f"{config.macchinaMitsubishi[f"BTU{int(BTUMitsubishi)}"]['Riscaldamento - costo energetico annuo (€/a)']}€/a")
                             st.divider()
                             st.write("**Alimentazione**")
                             st.caption(f"{config.macchinaMitsubishi[f"BTU{int(BTUMitsubishi)}"]["Alimentazione"]}")
