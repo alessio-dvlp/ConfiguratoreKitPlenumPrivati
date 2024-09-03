@@ -1,0 +1,315 @@
+macchinaHaier = {
+    "BTU12000": {
+        "immagine": "images/MacchinaHaier.png",
+        "descrizione": "Haier - Unità interna mod. AD35S2SM3FA / Unità esterna mod. 1U35S2SM1FA-2 / Comando a filo YRE17A integrato",
+        "Raffreddamento - classe energetica": "A++/A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "241",
+        "Raffreddamento - costo energetico annuo (€/a)": "40.97",
+        "Riscaldamento - classe energetica": "A++/A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "1427",
+        "Riscaldamento - costo energetico annuo (€/a)": "242.59",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "53",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1028.69, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 64.19,
+        "portata": "840 m3/h"
+    },
+    "BTU18000": {
+        "immagine": "images/MacchinaHaier.png",
+        "descrizione": "Haier - Unità interna mod. AD50S2SM3FA / Unità esterna mod. 1U50S2SJ2FA-2 / Comando a filo YRE17A integrato",
+        "Raffreddamento - classe energetica": "A++/A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "315",
+        "Raffreddamento - costo energetico annuo (€/a)": "53.55",
+        "Riscaldamento - classe energetica": "A++/A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "1961",
+        "Riscaldamento - costo energetico annuo (€/a)": "333.37",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "54",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1270.35, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 78.54,
+        "portata": "1020 m3/h"
+    },
+    "BTU24000": {
+        "immagine": "images/MacchinaHaier.png",
+        "descrizione": "Haier - Unità interna mod. AD71S2SM3FA / Unità esterna mod. 1U71S2ST1FA-2 / Comando a filo YRE17A integrato",
+        "Raffreddamento - classe energetica": "Non disponibile",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "406",
+        "Raffreddamento - costo energetico annuo (€/a)": "69.02",
+        "Riscaldamento - classe energetica": "Non disponibile",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "1827",
+        "Riscaldamento - costo energetico annuo (€/a)": "310.59",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "58",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1477.85, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 78.54,
+        "portata": "1440 m3/h"
+    },
+    "BTU36000": {
+        "immagine": "images/MacchinaHaier.png",
+        "descrizione": "Haier - Unità interna mod. AD105S2SM3FA / Unità esterna mod. 1U105S2SS2FA-2 / Comando a filo YRE17A integrato",
+        "Raffreddamento - classe energetica": "Non disponibile",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "544",
+        "Raffreddamento - costo energetico annuo (€/a)": "92.48",
+        "Riscaldamento - classe energetica": "Non disponibile",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "2792",
+        "Riscaldamento - costo energetico annuo (€/a)": "474.64",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "61",
+        "Tipo refrigerante": "R32",
+        "prezzo": 2181.35, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 92.90,
+        "portata": "1600 m3/h"
+    },
+    "BTU43000": {
+        "immagine": "images/MacchinaHaier.png",
+        "descrizione": "Haier - Unità interna mod. AD125S2SM3FA / Unità esterna mod. 1U125S2SS2FA-2 / Comando a filo YRE17A integrato",
+        "Raffreddamento - classe energetica": "A+/A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "735",
+        "Raffreddamento - costo energetico annuo (€/a)": "124.95",
+        "Riscaldamento - classe energetica": "A+/A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "3032",
+        "Riscaldamento - costo energetico annuo (€/a)": "515.44",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "65",
+        "Tipo refrigerante": "R32",
+        "prezzo": 2341.31, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 92.90,
+        "portata": "2250 m3/h"
+    },
+    "BTU48000": {
+        "immagine": "images/MacchinaHaier.png",
+        "descrizione": "Haier - Unità interna mod. AD140S2SM3FA / Unità esterna mod. 1U140S2SN1FA-2 / Comando a filo YRE17A integrato",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "835",
+        "Raffreddamento - costo energetico annuo (€/a)": "141.95",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "3032",
+        "Riscaldamento - costo energetico annuo (€/a)": "515.44",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "66",
+        "Tipo refrigerante": "R32",
+        "prezzo": 2429.22, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 92.90,
+        "portata": "2500 m3/h"
+    },
+    "BTU55000": {
+        "immagine": "images/MacchinaHaier.png",
+        "descrizione": "Haier - Unità interna mod. AD160S2SM3FAH / Unità esterna mod. 1U160S2SP1FB / Comando a filo YRE17A integrato",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "943",
+        "Raffreddamento - costo energetico annuo (€/a)": "160.31",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "3798",
+        "Riscaldamento - costo energetico annuo (€/a)": "645.66",
+        "Alimentazione": "Trifase",
+        "Livello potenza sonora (Max) dB(A)": "67",
+        "Tipo refrigerante": "R32",
+        "prezzo": 2735.70, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 92.90,
+        "portata": "2250 m3/h"
+    }
+}
+
+macchinaMitsubishi = {
+    "BTU9000": {
+        "immagine": "images/SEZ-M 9-12.png",
+        "descrizione": "Mitsubishi - Unità interna mod. SEZ-M25DA2 / Unità esterna mod. SUZ-M25VA",
+        "Raffreddamento - classe energetica": "A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "165",
+        "Raffreddamento - costo energetico annuo (€/a)": "28.05",
+        "Riscaldamento - classe energetica": "A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "807",
+        "Riscaldamento - costo energetico annuo (€/a)": "137.19",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "50",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1208.51, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 67.78,
+        "portata": "540 m3/h"
+    },
+    "BTU12000": {
+        "immagine": "images/SEZ-M 9-12.png",
+        "descrizione": "Mitsubishi - Unità interna mod. SEZ-M35DA2 / Unità esterna mod. SUZ-M35VA",
+        "Raffreddamento - classe energetica": "A+",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "207",
+        "Raffreddamento - costo energetico annuo (€/a)": "35.19",
+        "Riscaldamento - classe energetica": "A+",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "884",
+        "Riscaldamento - costo energetico annuo (€/a)": "150.28",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "51",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1395.86, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 74.95,
+        "portata": "660 m3/h"
+    },
+    "BTU18000": {
+        "immagine": "images/SEZ-M 18-21-24.png",
+        "descrizione": "Mitsubishi - Unità interna mod. SEZ-M50DA2 / Unità esterna mod. SUZ-M50VA",
+        "Raffreddamento - classe energetica": "A+",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "290",
+        "Raffreddamento - costo energetico annuo (€/a)": "49.30",
+        "Riscaldamento - classe energetica": "A+",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "1499",
+        "Riscaldamento - costo energetico annuo (€/a)": "254.83",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "57",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1730.23, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 74.95,
+        "portata": "900 m3/h"
+    },
+    "BTU21000": {
+        "immagine": "images/SEZ-M 18-21-24.png",
+        "descrizione": "Mitsubishi - Unità interna mod. SEZ-M60DA2 / Unità esterna mod. SUZ-M60VA",
+        "Raffreddamento - classe energetica": "A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "386",
+        "Raffreddamento - costo energetico annuo (€/a)": "65.62",
+        "Riscaldamento - classe energetica": "A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "1525",
+        "Riscaldamento - costo energetico annuo (€/a)": "259.25",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "58",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1977.81, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 82.13,
+        "portata": "1080 m3/h"
+    },
+    "BTU24000": {
+        "immagine": "images/PEAD-M 34-43-48.png",
+        "descrizione": "Mitsubishi - Unità interna mod. SEZ-M71DA2 / Unità esterna mod. SUZ-M71VA",
+        "Raffreddamento - classe energetica": "A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "452",
+        "Raffreddamento - costo energetico annuo (€/a)": "76.84",
+        "Riscaldamento - classe energetica": "A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "2072",
+        "Riscaldamento - costo energetico annuo (€/a)": "352.24",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "60",
+        "Tipo refrigerante": "R32",
+        "prezzo": 2360.82, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 82.13,
+        "portata": "1200 m3/h"
+    },
+    "BTU34000": {
+        "immagine": "images/PEAD-M 34-43-48.png",
+        "descrizione": "Mitsubishi - Unità interna mod. PEAD-SM100JAL2/ Unità esterna mod. PUZ-SM100VKA2",
+        "Raffreddamento - classe energetica": "A++",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "538",
+        "Raffreddamento - costo energetico annuo (€/a)": "91.46",
+        "Riscaldamento - classe energetica": "A+",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "2725",
+        "Riscaldamento - costo energetico annuo (€/a)": "463.25",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "62",
+        "Tipo refrigerante": "R32",
+        "prezzo": 1912.79, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 92.90,
+        "portata": "2040 m3/h"
+    },
+    "BTU43000": {
+        "immagine": "images/PEAD-M 34-43-48.png",
+        "descrizione": "Mitsubishi - Unità interna mod. PEAD-SM125JAL2/ Unità esterna mod. PUZ-SM125YKA2",
+        "Raffreddamento - classe energetica": "A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "792",
+        "Raffreddamento - costo energetico annuo (€/a)": "134.64",
+        "Riscaldamento - classe energetica": "A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "3070",
+        "Riscaldamento - costo energetico annuo (€/a)": "521.90",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "66",
+        "Tipo refrigerante": "R32",
+        "prezzo": 2326.18, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 92.90,
+        "portata": "2520 m3/h"
+    },
+    "BTU48000": {
+        "immagine": "images/PEA-M 68-85.png",
+        "descrizione": "Mitsubishi - Unità interna mod. PEAD-SM140JAL2/ Unità esterna mod. PUZ-SM140YKA2",
+        "Raffreddamento - classe energetica": "A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "895",
+        "Raffreddamento - costo energetico annuo (€/a)": "152.15",
+        "Riscaldamento - classe energetica": "A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "3399",
+        "Riscaldamento - costo energetico annuo (€/a)": "577.83",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "66",
+        "Tipo refrigerante": "R32",
+        "prezzo": 2701.44, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 100.07,
+        "portata": "2760 m3/h"
+    },
+        "BTU68000": {
+        "immagine": "images/PEA-M 68-85.png",
+        "descrizione": "Mitsubishi - Unità interna mod. PEA-M200LA2/ Unità esterna mod. PUZ-M200VKA2",
+        "Raffreddamento - classe energetica": "A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "895",
+        "Raffreddamento - costo energetico annuo (€/a)": "152.15",
+        "Riscaldamento - classe energetica": "A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "3399",
+        "Riscaldamento - costo energetico annuo (€/a)": "577.83",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "66",
+        "Tipo refrigerante": "R32",
+        "prezzo": 6825.20, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 97.51,
+        "portata": "2760 m3/h"
+    },
+        "BTU85000": {
+        "immagine": "images/PEA-M 68-85.png",
+        "descrizione": "Mitsubishi - Unità interna mod. PEA-M250LA2/ Unità esterna mod. PUZ-M250VKA2",
+        "Raffreddamento - classe energetica": "A",
+        "Raffreddamento - consumo energetico annuo (kWh/a)": "895",
+        "Raffreddamento - costo energetico annuo (€/a)": "152.15",
+        "Riscaldamento - classe energetica": "A",
+        "Riscaldamento - consumo energetico annuo (kWh/a)": "3399",
+        "Riscaldamento - costo energetico annuo (€/a)": "577.83",
+        "Alimentazione": "Monofase",
+        "Livello potenza sonora (Max) dB(A)": "66",
+        "Tipo refrigerante": "R32",
+        "prezzo": 7830.00, # prezzo spedizione (100.00€)
+        "prezzoPlenumMacchina": 97.51,
+        "portata": "2760 m3/h"
+    }
+}
+
+listino_prezzi_accessori = {
+    "Serranda By-pass": {"prezzo": 36.00, "posizioneImmagine": "images/Serranda By-pass.png" , "info":"Mantiene la pressione statica nella rete dei condotti all'interno dei limiti prestabiliti, assicurando il corretto funzionamento del sistema di climatizzazione a condotti."},
+    "Flessibile Ø 150 mm isolato": {"prezzo": 4.60, "info":""},
+    "Flessibile Ø 150 mm non isolato": {"prezzo": 1.82, "info":""},
+    "Controtelaio":{"prezzo": 30.00, "info":""},
+    "Griglia di ripresa 600x400 mm": {"prezzo": 62.73, "prezzoControtelaio": 13.00, "posizioneImmagine": "", "info":""},
+    "Griglia di ripresa 800x400 mm": {"prezzo": 76.66, "prezzoControtelaio": 12.00, "posizioneImmagine": "", "info":""},
+    "Griglia di ripresa 1000x400 mm": {"prezzo": 87.12, "prezzoControtelaio": 14.00, "posizioneImmagine": "", "info":""},
+    "Griglia di ripresa 1000x600 mm": {"prezzo": 113.85, "prezzoControtelaio": 16.00, "posizioneImmagine": "", "info":""},
+    "Fascette stringitubo 175":{"prezzo": 0.84, "info":""},
+    "Fascette stringitubo 225":{"prezzo": 1.01, "info":""},
+    "Vite autoforante": {"prezzo":1.50, "info":"Vite autoforante 4.2 x 16mm n.8"},
+    "Dadi": {"prezzo":2.00, "info":""},
+    "Tasselli": {"prezzo":3.00, "info":"6 Tasselli"},
+    "Barra filettata": {"prezzo":1.15, "info":"4 per sistema manuale, 6 per sistema motorizzato"},
+    "Bocchetta a doppio filare di alette - WBMAV0 300x150mm": {"prezzo": 12.44, "prezzoPlenum":37.54, "prezzoSerranda": 7.50, "info":"Bocchetta in alluminio con alette frontali parallele al lato corto, posteriori parallele al lato lungo. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Bocchetta ad alette fisse - WLAF15 400x150mm": {"prezzo": 20.99, "prezzoPlenum":40.56, "prezzoSerranda": 8.80, "info":"Bocchetta a barre orizzontali fisse con deflessione a 15° con pacco barre estreaibile. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Bocchetta a microugelli orientabili su pannello - WGUR 1000x200mm": {"prezzo": 231.87, "prezzoPlenum":61.12,"prezzoSerranda": 19.00, "info":"Bocchetta verniciata RAL9010 con piastra in acciaio, cornice in alluminio e ugelli in nylon bianco. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm": {"prezzo": 54.02, "prezzoPlenum":40.56, "prezzoSerranda": 16.50,"info":"Bocchetta a barre fisse con deflessione 15°, telaio in alluminio naturale e parte asportabile a barre fisse in alluminio. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Diffusore multidirezionale a 4 vie - WAQ1 225x225mm": {"prezzo": 17.67, "prezzoPlenum":37.67, "prezzoSerranda": 6.99, "info":"Diffusore in alluminio con parte centrale asportabile. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Diffusore a flusso elicoidale - WBQE3Q 400x400mm": {"prezzo": 24.48,"prezzoPlenum":49.53, "prezzoSerranda": 9.45, "prezzoEqualizzatore": 6.08, "prezzoPonteFissaggio": 6.02, "info":"Diffusore in acciaio verniciato bianco RAL9010 con getti regolabili e deflettore in polipropilene nero RAL9005. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm": {"prezzo": 93.04, "prezzoPlenum":59.56, "info":"**Diffusore lineare a scomparsa con serranda e deflettore. Completa di plenum in pannello preisolato spessore 12 mm e tappi di chiusura**. NB: Se desideri giuntare più diffusori lineari considera solo tappi di chiusura alle estremità dei diffusori e kit di continuità come da specifiche seguenti. Ricordati quindi di aggiungere o togliere i tappi e i kit in base alle tue esigenze."},
+    "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie": {"prezzo": 45.13, "prezzoPlenum":53.25, "info":"Diffusore a feritoie in alluminio estruso con deflettore a goccia nero RAL9005 in polipropilene e serranda a scorrimento. Completa di plenum in pannello preisolato spessore 12 mm e cavalletti di montaggio (2 pezzi)"},
+    "Sistema Motorizzato Cablato": {
+           "Centralina":{"prezzo": 283.86, "info":""},
+           "Cronotermostato":{"prezzo": 86.19, "info":""},
+           "Interfaccia di comunicazione":{"prezzo": 231.62, "info":""},
+           "Scatola stagna":{"prezzo": 50, "info":""},
+           "Cablatura sistema":{"prezzo": 100, "info":""}
+    },
+    "Sistema Motorizzato Wireless": {
+           "Centralina":{"prezzo": 321.62, "info":""},
+           "Cronotermostato":{"prezzo": 120.18, "info":""},
+           "Interfaccia di comunicazione":{"prezzo": 231.62, "info":""},
+           "Scatola stagna":{"prezzo": 50, "info":""},
+           "Cablatura sistema":{"prezzo": 100, "info":""}
+    },
+    "Netbox":{"prezzo": 242.65, "info":"Consente il controllo da remoto della temperatura degli ambienti tramite qualsiasi dispositivo mobile (smartphone, tablet) o fisso (PC) grazie alla webapp: Zoening 2.0 (Disponibile in App Store e Google Play Store)."},
+    "Kit Continuità": 2.84,
+    "Tappi di chiusura": 10.22
+}
