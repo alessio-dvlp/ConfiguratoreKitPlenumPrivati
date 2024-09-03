@@ -314,7 +314,7 @@ def sceltaMacchina():
        col1top, col2top = st.columns([0.5,0.5])
        with col1top:
               with st.container(border=True):
-                     st.image(f"{config.macchinaHaier[f"BTU{int(BTUHaier)}"]["immagine"]}")
+                     st.image(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']["immagine"]}")
                      flagHaier = st.checkbox(f"**{config.macchinaHaier[f'BTU{int(BTUHaier)}']['descrizione']}**",value=st.session_state.flagHaier,on_change=lambda: (setattr(st.session_state, 'flagHaier', True), setattr(st.session_state, 'flagMitsubishi', False)) if not st.session_state.flagHaier else None)
                      st.session_state.flagHaier = flagHaier
                      st.subheader(f"{format((config.macchinaHaier[f"BTU{int(BTUHaier)}"]["prezzo"]*1.10) + 156.80, '.2f')}€") #formato decimale
