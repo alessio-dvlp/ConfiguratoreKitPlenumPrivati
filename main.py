@@ -322,7 +322,7 @@ def sceltaMacchina():
                      with st.expander("**Dati tecnici - Unità Haier**", expanded=False, icon=":material/settings:"):
                             st.write("**RAFFREDDAMENTO**")
                             st.write("**Classe energetica**")
-                            st.caption(f"{config.macchinaHaier[f"BTU{int(BTUHaier)}"]["Raffreddamento - classe energetica"]}")
+                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']["Raffreddamento - classe energetica"]}")
                             st.write("**Consumo energetico annuo**")
                             st.caption(f"{config.macchinaHaier[f"BTU{int(BTUHaier)}"]["Raffreddamento - consumo energetico annuo (kWh/a)"]} kWh/a")
                             st.write("**Costo energetico annuo**")
