@@ -985,18 +985,18 @@ def riepilogo():
        col1, col2 = st.columns([0.5,0.5])
        with col1:
               if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
-                     st.image(f"{config.macchinaHaier[f"BTU{int(st.session_state.tempBTUHaier)}"]['immagine']}")
+                     st.image(f"{config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['immagine']}")
               else:
-                     st.image(f"{config.macchinaMitsubishi[f"BTU{int(st.session_state.tempBTUMitsubishi)}"]['immagine']}")
+                     st.image(f"{config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['immagine']}")
        with col2:
               if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
-                     st.caption(f"{config.macchinaHaier[f"BTU{int(st.session_state.tempBTUHaier)}"]['descrizione']}")
+                     st.caption(f"{config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['descrizione']}")
               else:
-                     st.caption(f"{config.macchinaMitsubishi[f"BTU{int(st.session_state.tempBTUMitsubishi)}"]['descrizione']}")
+                     st.caption(f"{config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}")
 
               if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
-                     prezzoMacchina = (config.macchinaHaier[f"BTU{int(st.session_state.tempBTUHaier)}"]['prezzo']*1.10) + 156.80
-                     st.session_state.prezzoPlenumMacchina = config.macchinaHaier[f"BTU{int(st.session_state.tempBTUHaier)}"]['prezzoPlenumMacchina'] + (st.session_state.sommaZone * 3)
+                     prezzoMacchina = (config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzo']*1.10) + 156.80
+                     st.session_state.prezzoPlenumMacchina = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzoPlenumMacchina'] + (st.session_state.sommaZone * 3)
                      st.write(f":green[**+ {format(prezzoMacchina, '.2f')}€**]")
               else:
                      prezzoMacchina = (config.macchinaMitsubishi[f"BTU{int(st.session_state.tempBTUMitsubishi)}"]['prezzo']*1.10) + 100
