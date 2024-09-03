@@ -1,0 +1,27 @@
+/* Nasconde Header */
+header{
+  visibility: hidden;
+}
+/* Nasconde spazio Header Sidebar */
+[data-testid="stSidebarUserContent"] {
+  padding-top: 0px !important;
+}
+/* Nasconde "Press enter to apply" nei "text_input" */
+div[data-testid="InputInstructions"] > span:nth-child(1) {
+  visibility: hidden;
+}
+/* Nasconde ingrandimento immagine */
+button[title="View fullscreen"] {
+  visibility: hidden;
+}
+/* Disabilita scroll immagine */
+[data-testid="stVerticalBlockBorderWrapper"] {
+  overflow: hidden;
+}
+/* Nascondi sidebar */
+[data-testid="stSidebar"] {
+  visibility: hidden;
+}
+[data-testid="collapsedControl"] {
+  visibility: hidden;
+}
