@@ -25,3 +25,6 @@ button[title="View fullscreen"] {
 [data-testid="collapsedControl"] {
   visibility: hidden;
 }
+[data-testid="stHeaderActionElements"] {
+  display: None;
+}
