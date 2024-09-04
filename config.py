@@ -82,8 +82,10 @@ macchinaHaier = {
     "BTU48000": {
         "immagine": "images/MacchinaHaier.png",
         "descrizione": "Haier - Unità interna mod. AD140S2SM3FA / Unità esterna mod. 1U140S2SN1FA-2 / Comando a filo YRE17A integrato",
+        "Raffreddamento - classe energetica": "Non disponibile",
         "Raffreddamento - consumo energetico annuo (kWh/a)": "835",
         "Raffreddamento - costo energetico annuo (€/a)": "141.95",
+        "Riscaldamento - classe energetica": "Non disponibile",
         "Riscaldamento - consumo energetico annuo (kWh/a)": "3032",
         "Riscaldamento - costo energetico annuo (€/a)": "515.44",
         "Alimentazione": "Monofase",
@@ -96,8 +98,10 @@ macchinaHaier = {
     "BTU55000": {
         "immagine": "images/MacchinaHaier.png",
         "descrizione": "Haier - Unità interna mod. AD160S2SM3FAH / Unità esterna mod. 1U160S2SP1FB / Comando a filo YRE17A integrato",
+        "Raffreddamento - classe energetica": "Non disponibile",
         "Raffreddamento - consumo energetico annuo (kWh/a)": "943",
         "Raffreddamento - costo energetico annuo (€/a)": "160.31",
+        "Riscaldamento - classe energetica": "Non disponibile",
         "Riscaldamento - consumo energetico annuo (kWh/a)": "3798",
         "Riscaldamento - costo energetico annuo (€/a)": "645.66",
         "Alimentazione": "Trifase",
@@ -311,5 +315,6 @@ listino_prezzi_accessori = {
     },
     "Netbox":{"prezzo": 242.65, "info":"Consente il controllo da remoto della temperatura degli ambienti tramite qualsiasi dispositivo mobile (smartphone, tablet) o fisso (PC) grazie alla webapp: Zoening 2.0 (Disponibile in App Store e Google Play Store)."},
     "Kit Continuità": 2.84,
-    "Tappi di chiusura": 10.22
+    "Tappi di chiusura": 10.22,
+    "Cavalletti": 1.00
 }
