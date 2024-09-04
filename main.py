@@ -735,6 +735,8 @@ def distanze():
                             labelDistanza = "uscio/porta"
                      elif ultimi_elementi[i][1] == 4 or ultimi_elementi[i][1] == 5:
                             labelDistanza = "centro della stanza"
+                     else:
+                            labelDistanza = "uscio/porta"
                      distanza = st.text_input(f"Distanza in metri tra macchina e {labelDistanza}", key=f"{st.session_state.elencoNomiStanze[i]}{i+1}")
                      if distanza and not distanza.isdigit():
                             st.error("Per favore, inserisci un valore numerico.")
