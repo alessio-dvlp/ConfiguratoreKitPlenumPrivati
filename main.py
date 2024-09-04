@@ -17,7 +17,7 @@ def tipologiaImpianto():
     st.caption("Pagina 1 di 14")
     st.image("images/WidboxHomepage.png")
     st.write("**WIDBOX - Il sistema di climatizzazione canalizzata che ti offre Widair.**")
-    st.write("Il widbox che viene fornito è adatto ad abitazioni/locali commerciali che dovranno essere controsoffittati, si ricorda che l’impianto canalizzato è pensato per essere nascosto nel controsoffitto.")
+    st.write("Il widbox è adatto ad abitazioni/locali commerciali che dovranno essere controsoffittati.")
     st.write("In pochi minuti e semplici passi configura e dimensiona il tuo impianto di climatizzazione secondo le reali esigenze del tuo appartamento. Personalizza gli elementi di diffusione in ogni stanza e seleziona le alternative che fanno al caso tuo. Verrai guidato dal nostro configuratore che eseguirà tutto il dimensionamento dell’impianto per te gratuitamente e infine otterrai un preventivo istantaneo. Ti resta solo che iniziare la tua configurazione...")
     if st.button("**Inizia la configurazione**", type="primary", use_container_width=True):
        st.session_state.page = "Funzione Impianto"
@@ -107,36 +107,42 @@ def definisciStanze():
               with st.expander(f"**Stanza {i+1}**", icon=":material/deployed_code:", expanded=True):
                      nomeStanza = st.selectbox("Nome stanza", ['Salotto', 'Cucina', 'Camera patronale', 'Cameretta', 'Studio', "Bagno", 'Altro'], key=f"NomeStanza{i+1}")
                      if nomeStanza == "Altro":
-                            nomeStanzaCustom = st.text_input("**Inserisci nome stanza**")
+                            nomeStanzaCustom = st.text_input("**Inserisci nome stanza**", key=f"NomeStanzaCustom{i+1}")
                             st.session_state.scelteElDif[f"NomeStanza{i+1}"] = nomeStanzaCustom
 
-                            mqStanza = st.text_input(f"Mq {nomeStanza}", key=f"MqStanza{i+1}")
-                            if mqStanza and not mqStanza.isdigit():
-                                   st.error("Per favore, inserisci un valore numerico intero per i metri quadri.")
-                            else:
-                                   st.session_state.scelteElDif[f"MqStanza{i+1}"] = mqStanza
-       
-                            altezzaStanza = st.text_input(f"Altezza {nomeStanza}", key=f"AltezzaStanza{i+1}")
-                            if altezzaStanza and not altezzaStanza.isdigit():
-                                   st.error("Per favore, inserisci un valore numerico intero per l'altezza.")
-                            else:
-                                   st.session_state.scelteElDif[f"AltezzaStanza{i+1}"] = altezzaStanza
+                            mqStanza = st.text_input(f"Mq {nomeStanzaCustom}", key=f"MqStanza{i+1}")
+                            # Controllo se mqStanza e altezzaStanza contengono solo numeri
+                            if mqStanza:
+                                   try:
+                                          mqStanza = float(mqStanza.replace(',', '.'))  # Sostituisci la virgola con un punto per i decimali
+                                          st.session_state.scelteElDif[f"MqStanza{i+1}"] = mqStanza
+                                   except ValueError:
+                                          st.error("Per favore, inserisci un valore numerico valido per i metri quadri.")
+                            altezzaStanza = st.text_input(f"Altezza {nomeStanzaCustom} in metri", key=f"AltezzaStanza{i+1}")
+                            if altezzaStanza:
+                                   try:
+                                          altezzaStanza = float(altezzaStanza.replace(',', '.'))  # Sostituisci la virgola con un punto per i decimali
+                                          st.session_state.scelteElDif[f"AltezzaStanza{i+1}"] = altezzaStanza
+                                   except ValueError:
+                                          st.error("Per favore, inserisci un valore numerico valido per l'altezza.")
                      else:
                             st.session_state.scelteElDif[f"NomeStanza{i+1}"] = nomeStanza
                             mqStanza = st.text_input(f"Mq {nomeStanza}", key=f"MqStanza{i+1}")
                             # Controllo se mqStanza e altezzaStanza contengono solo numeri
-                            if mqStanza and not mqStanza.isdigit():
-                                   st.error("Per favore, inserisci un valore numerico intero per i metri quadri.")
-                            else:
-                                   st.session_state.scelteElDif[f"MqStanza{i+1}"] = mqStanza
-                                   #config.elencoStanze[f"MqStanza{i+1}"] = mqStanza
+                            if mqStanza:
+                                   try:
+                                          mqStanza = float(mqStanza.replace(',', '.'))  # Sostituisci la virgola con un punto per i decimali
+                                          st.session_state.scelteElDif[f"MqStanza{i+1}"] = mqStanza
+                                   except ValueError:
+                                          st.error("Per favore, inserisci un valore numerico valido per i metri quadri.")
 
-                            altezzaStanza = st.text_input(f"Altezza {nomeStanza}", key=f"AltezzaStanza{i+1}")
-                            if altezzaStanza and not altezzaStanza.isdigit():
-                                   st.error("Per favore, inserisci un valore numerico intero per l'altezza.")
-                            else:
-                                   st.session_state.scelteElDif[f"AltezzaStanza{i+1}"] = altezzaStanza
-                                   #config.elencoStanze[f"AltezzaStanza{i+1}"] = altezzaStanza
+                            altezzaStanza = st.text_input(f"Altezza {nomeStanza} in metri", key=f"AltezzaStanza{i+1}")
+                            if altezzaStanza:
+                                   try:
+                                          altezzaStanza = float(altezzaStanza.replace(',', '.'))  # Sostituisci la virgola con un punto per i decimali
+                                          st.session_state.scelteElDif[f"AltezzaStanza{i+1}"] = altezzaStanza
+                                   except ValueError:
+                                          st.error("Per favore, inserisci un valore numerico valido per l'altezza.")
        
        #st.write(st.session_state.scelteElDif)
 
@@ -287,16 +293,25 @@ def sceltaMacchina():
        #if sommaZone != st.session_state.nStanze:
        #      Azioni da fare se sommaZone supera numeroStanze immesse
 
+       if 'flagMacchinaMitsubishiNonDisponibile' not in st.session_state:
+              st.session_state.flagMacchinaMitsubishiNonDisponibile = False
+       if 'flagMacchinaHaierNonDisponibile' not in st.session_state:
+              st.session_state.flagMacchinaHaierNonDisponibile = False
+
        # Trova la soglia appropriata Mitsubishi
        for soglia in soglieMitsubishi:
               if valoreBTU <= soglia:
                      BTUMitsubishi = soglia
                      break
+              if valoreBTU > 85000:
+                     st.session_state.flagMacchinaMitsubishiNonDisponibile = True
        # Trova la soglia appropriata Haier
        for soglia in soglieHaier:
               if valoreBTU <= soglia:
                      BTUHaier = soglia
                      break
+              if valoreBTU > 55000:
+                     st.session_state.flagMacchinaHaierNonDisponibile = True
        
        #st.write(f"Portata Macchina Mitsubishi: {BTUMitsubishi}")
        #st.write(f"Portata Macchina Haier: {BTUHaier}")
@@ -304,7 +319,7 @@ def sceltaMacchina():
        if 'flagHaier' not in st.session_state:
               st.session_state.flagHaier = False
        if 'flagMitsubishi' not in st.session_state:
-              st.session_state.flagMitsubishi = False
+              st.session_state.flagMitsubishi = True
        if 'tempBTUHaier' not in st.session_state:
               st.session_state.tempBTUHaier = ""
        if 'tempBTUMitsubishi' not in st.session_state:
@@ -314,76 +329,86 @@ def sceltaMacchina():
        col1top, col2top = st.columns([0.5,0.5])
        with col1top:
               with st.container(border=True):
-                     st.image(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['immagine']}")
-                     flagHaier = st.checkbox(f"**{config.macchinaHaier[f'BTU{int(BTUHaier)}']['descrizione']}**",value=st.session_state.flagHaier,on_change=lambda: (setattr(st.session_state, 'flagHaier', True), setattr(st.session_state, 'flagMitsubishi', False)) if not st.session_state.flagHaier else None)
-                     st.session_state.flagHaier = flagHaier
-                     st.subheader(f"{format((config.macchinaHaier[f'BTU{int(BTUHaier)}']['prezzo']*1.10) + 156.80, '.2f')}€") #formato decimale
+                     if st.session_state.flagMacchinaHaierNonDisponibile == False:
+                            st.image(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['immagine']}")
+                            flagHaier = st.checkbox(f"**{config.macchinaHaier[f'BTU{int(BTUHaier)}']['descrizione']}**",value=st.session_state.flagHaier,on_change=lambda: (setattr(st.session_state, 'flagHaier', True), setattr(st.session_state, 'flagMitsubishi', False)) if not st.session_state.flagHaier else None)
+                            st.session_state.flagHaier = flagHaier
+                            st.subheader(f"{format(config.macchinaHaier[f'BTU{int(BTUHaier)}']['prezzo'] + 156.80, '.2f')}€") #formato decimale
 
-                     with st.expander("**Dati tecnici - Unità Haier**", expanded=False, icon=":material/settings:"):
-                            st.write("**RAFFREDDAMENTO**")
-                            st.write("**Classe energetica**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Raffreddamento - classe energetica']}")
-                            st.write("**Consumo energetico annuo**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Raffreddamento - consumo energetico annuo (kWh/a)']} kWh/a")
-                            st.write("**Costo energetico annuo**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Raffreddamento - costo energetico annuo (€/a)']}€/a")
-                            st.divider()
-                            st.write("**RISCALDAMENTO**")
-                            st.write("**Classe energetica**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Riscaldamento - classe energetica']}")
-                            st.write("**Consumo energetico annuo**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Riscaldamento - consumo energetico annuo (kWh/a)']} kWh/a")
-                            st.write("**Costo energetico annuo**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Riscaldamento - costo energetico annuo (€/a)']}€/a")
-                            st.divider()
-                            st.write("**Alimentazione**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Alimentazione']}")
-                            st.write("**Livello potenza sonora (Max)**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Livello potenza sonora (Max) dB(A)']} dB(A)")
-                            st.write("**Tipo refrigerante**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Tipo refrigerante']}")
-                            st.write("**Portata**")
-                            st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata']}")
+                            with st.expander("**Dati tecnici - Unità Haier**", expanded=False, icon=":material/settings:"):
+                                   st.write("**POTENZA MACCHINA**")
+                                   st.caption(f'{int(BTUHaier)}BTU')
+                                   st.write("**RAFFREDDAMENTO**")
+                                   st.write("**Classe energetica**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Raffreddamento - classe energetica']}")
+                                   st.write("**Consumo energetico annuo**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Raffreddamento - consumo energetico annuo (kWh/a)']} kWh/a")
+                                   st.write("**Costo energetico annuo**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Raffreddamento - costo energetico annuo (€/a)']}€/a")
+                                   st.divider()
+                                   st.write("**RISCALDAMENTO**")
+                                   st.write("**Classe energetica**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Riscaldamento - classe energetica']}")
+                                   st.write("**Consumo energetico annuo**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Riscaldamento - consumo energetico annuo (kWh/a)']} kWh/a")
+                                   st.write("**Costo energetico annuo**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Riscaldamento - costo energetico annuo (€/a)']}€/a")
+                                   st.divider()
+                                   st.write("**Alimentazione**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Alimentazione']}")
+                                   st.write("**Livello potenza sonora (Max)**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Livello potenza sonora (Max) dB(A)']} dB(A)")
+                                   st.write("**Tipo refrigerante**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['Tipo refrigerante']}")
+                                   st.write("**Portata**")
+                                   st.caption(f"{config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata']}")
+                     else:
+                            st.warning("Macchina Haier non disponibile per i BTU Necessari")
        with col2top:
               with st.container(border=True):
-                     st.image(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['immagine']}")
-                     flagMitsubishi = st.checkbox(f"**{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['descrizione']}**",value=st.session_state.flagMitsubishi,on_change=lambda: (setattr(st.session_state, 'flagMitsubishi', True), setattr(st.session_state, 'flagHaier', False)) if not st.session_state.flagMitsubishi else None)
-                     st.session_state.flagMitsubishi = flagMitsubishi
-                     st.write(" ")
-                     st.subheader(f"{format((config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['prezzo']*1.10) + 100.00, '.2f')}€")
+                     if st.session_state.flagMacchinaMitsubishiNonDisponibile == False:
+                            st.image(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['immagine']}")
+                            flagMitsubishi = st.checkbox(f"**{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['descrizione']}**",value=st.session_state.flagMitsubishi,on_change=lambda: (setattr(st.session_state, 'flagMitsubishi', True), setattr(st.session_state, 'flagHaier', False)) if not st.session_state.flagMitsubishi else None)
+                            st.session_state.flagMitsubishi = flagMitsubishi
+                            st.write(" ")
+                            st.subheader(f"{format(config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['prezzo'] + 100.00, '.2f')}€")
 
-                     with st.expander("**Dati tecnici - Unità Mistubishi**", expanded=False, icon=":material/settings:"):
-                            st.write("**RAFFREDDAMENTO**")
-                            st.write("**Classe energetica**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Raffreddamento - classe energetica']}")
-                            st.write("**Consumo energetico annuo**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Raffreddamento - consumo energetico annuo (kWh/a)']} kWh/a")
-                            st.write("**Costo energetico annuo**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Raffreddamento - costo energetico annuo (€/a)']}€/a")
-                            st.divider()
-                            st.write("**RISCALDAMENTO**")
-                            st.write("**Classe energetica**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Riscaldamento - classe energetica']}")
-                            st.write("**Consumo energetico annuo**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Riscaldamento - consumo energetico annuo (kWh/a)']} kWh/a")
-                            st.write("**Costo energetico annuo**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Riscaldamento - costo energetico annuo (€/a)']}€/a")
-                            st.divider()
-                            st.write("**Alimentazione**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Alimentazione']}")
-                            st.write("**Livello potenza sonora (Max)**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Livello potenza sonora (Max) dB(A)']} dB(A)")
-                            st.write("**Tipo refrigerante**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Tipo refrigerante']}")
-                            st.write("**Portata**")
-                            st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata']}")
+                            with st.expander("**Dati tecnici - Unità Mistubishi**", expanded=False, icon=":material/settings:"):
+                                   st.write("**POTENZA MACCHINA**")
+                                   st.caption(f'{int(BTUMitsubishi)}BTU')
+                                   st.write("**RAFFREDDAMENTO**")
+                                   st.write("**Classe energetica**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Raffreddamento - classe energetica']}")
+                                   st.write("**Consumo energetico annuo**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Raffreddamento - consumo energetico annuo (kWh/a)']} kWh/a")
+                                   st.write("**Costo energetico annuo**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Raffreddamento - costo energetico annuo (€/a)']}€/a")
+                                   st.divider()
+                                   st.write("**RISCALDAMENTO**")
+                                   st.write("**Classe energetica**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Riscaldamento - classe energetica']}")
+                                   st.write("**Consumo energetico annuo**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Riscaldamento - consumo energetico annuo (kWh/a)']} kWh/a")
+                                   st.write("**Costo energetico annuo**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Riscaldamento - costo energetico annuo (€/a)']}€/a")
+                                   st.divider()
+                                   st.write("**Alimentazione**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Alimentazione']}")
+                                   st.write("**Livello potenza sonora (Max)**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Livello potenza sonora (Max) dB(A)']} dB(A)")
+                                   st.write("**Tipo refrigerante**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['Tipo refrigerante']}")
+                                   st.write("**Portata**")
+                                   st.caption(f"{config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata']}")
+                     else:
+                            st.warning("Macchina Mitsubishi non disponibile per i BTU Necessari")
 
        # Necessario per calcolo Griglia di ripresa
-       if flagHaier == True:
+       if st.session_state.flagHaier == True:
               st.session_state.tempBTUHaier = BTUHaier
        else:
               st.session_state.tempBTUHaier = None
-       if flagMitsubishi == True:
+       if st.session_state.flagMitsubishi == True:
               st.session_state.tempBTUMitsubishi = BTUMitsubishi
        else:
               st.session_state.tempBTUMitsubishi = None
@@ -391,6 +416,8 @@ def sceltaMacchina():
        col1, col2 = st.columns([0.5,0.5])
        with col1:
               if st.button("**Indietro**", type="secondary", use_container_width=True):
+                     st.session_state.flagMacchinaMitsubishiNonDisponibile = False
+                     st.session_state.flagMacchinaHaierNonDisponibile = False
                      st.session_state.page = "Controllo Temperatura"
                      st.rerun()
        with col2:
@@ -483,6 +510,9 @@ def elementiDiffusione():
        if st.session_state.locazioneImpianto == "Abitazione":
               for i in range(st.session_state.nStanze):
                      st.subheader(st.session_state.elencoNomiStanze[i])
+                     for zona in st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:]:
+                            if int(zona[1]) > 1:
+                                   st.caption(f"**Per questa stanza sono necessarie {zona[1]} bocchette/diffusori**")
                      with st.expander(f"**Seleziona Bocchetta / Diffusore per {st.session_state.elencoNomiStanze[i]}**", icon=":material/deployed_code:", expanded=True):
                             st.session_state.elDifTip = image_select(
                             label=f"Scegli l'elemento di diffusione che preferisci",
@@ -542,13 +572,13 @@ def elementiDiffusione():
                             key=f"{st.session_state.elencoNomiStanze[i]}{i+1}"
                             )
 
-                            if st.session_state.elDifTip == 1:
+                            if st.session_state.elDifTip == 3:
                                    st.write("Anteprima bocchetta installata")
                                    st.image("images/FUTURE (installata).png")
-                            if st.session_state.elDifTip == 2:
+                            if st.session_state.elDifTip == 6:
                                    st.write("Anteprima bocchetta installata")
                                    st.image("images/DLAS40 (installata).png")
-                            if st.session_state.elDifTip == 3:
+                            if st.session_state.elDifTip == 7:
                                    st.write("Anteprima bocchetta installata")
                                    st.image("images/DLN40 (installata).png")
 
@@ -572,6 +602,11 @@ def elementiDiffusione():
                                    return_value="index",
                                    key=f"elDifCol{i+1}"
                                    )
+                            
+                            elDifTip = st.session_state.elDifTip
+                            elDifCol = st.session_state.elDifCol
+                            nuovo_elemento = [f"{st.session_state.elencoNomiStanze[i]}{i+1}", elDifTip, elDifCol]
+                            st.session_state.elencoElementiDiffusione.append(nuovo_elemento)
 
        col1, col2 = st.columns([0.5,0.5])
        with col1:
@@ -661,8 +696,12 @@ def distanze():
        st.caption("Domanda 12 di 14")
        st.title("Distanze")
        st.write("**DEFINISCI LA DISTANZA TRA LA MACCHINA INTERNA E LE STANZE/LOCALI**")
-       st.write("Dopo aver deciso dove posizionare la macchina interna in base allo spazio presente nel tuo alloggio/locale commerciale, definisci approssimativamente quanti metri passano tra dove verrà posizionata la macchina e il centro della stanza e/o parete/uscio della porta.")
-       st.write("Definisci i metri come illustrato nelle immagini seguenti, seguendo la linea rossa nei diversi casi (diffusore/bocchetta).")
+       if st.session_state.locazioneImpianto == 'Abitazione':
+              st.write("Dopo aver deciso dove posizionare la macchina interna in base allo spazio presente nella tua abitazione, prendi la tua planimetria e definisci approssimativamente quanti metri passano tra dove verrà posizionata la macchina e l'uscio della porta di ogni stanza.")
+              st.write("Definisci i metri di distanza come illustrato nell'immagine seguente.")
+       else:
+              st.write("Dopo aver deciso dove posizionare la macchina interna in base allo spazio presente nel tuo locale commerciale, prendi la tua planimetria e definisci approssimativamente quanti metri passano tra dove verrà posizionata la macchina e l'uscio della porta e/o il centro della stanza.")
+              st.write("Definisci i metri come illustrato nelle immagini seguenti, seguendo la linea rossa nei diversi casi (diffusore/bocchetta).")
 
        sommaDistanza = 0
        if 'prezzoFlessibile' not in st.session_state:
@@ -675,23 +714,26 @@ def distanze():
        flagSuRichiesta = False
        flagErrorDistanza = False
 
-       col1, col2 = st.columns([0.5,0.5])
-       with col1:
+       if st.session_state.locazioneImpianto == 'Abitazione':
               st.image("images/MacchinaUscioPorta.png", caption="Se hai selezionato una bocchetta")
-       with col2:
-              st.image("images/MacchinaCentroStanza.png", caption="Se hai selezionato un diffusore")
-
+       else:
+              col1, col2 = st.columns([0.5,0.5])
+              with col1:
+                     st.image("images/MacchinaUscioPorta.png", caption="Se hai selezionato una bocchetta/diffusore lineare")
+              with col2:
+                     st.image("images/MacchinaCentroStanza.png", caption="Se hai selezionato un diffusore a soffitto")
        st.write("")
 
        ultimi_elementi = st.session_state.elencoElementiDiffusione[-st.session_state.nStanze:]
+       #st.write(ultimi_elementi)
        #st.write(ultimi_elementi[0][1])
        #st.write(ultimi_elementi[1][1])
 
        for i in range(st.session_state.nStanze):
               with st.expander(f"**{st.session_state.elencoNomiStanze[i]}**", icon=":material/deployed_code:", expanded=True):
-                     if ultimi_elementi[i][1] == 0:
+                     if st.session_state.locazioneImpianto == 'Abitazione':
                             labelDistanza = "uscio/porta"
-                     else:
+                     elif ultimi_elementi[i][1] == 4 or ultimi_elementi[i][1] == 5:
                             labelDistanza = "centro della stanza"
                      distanza = st.text_input(f"Distanza in metri tra macchina e {labelDistanza}", key=f"{st.session_state.elencoNomiStanze[i]}{i+1}")
                      if distanza and not distanza.isdigit():
@@ -707,10 +749,10 @@ def distanze():
        
        if flagSuRichiesta != True:
               if st.session_state.flagSanificante == True:
-                     st.session_state.scatoleFlessibile = int((math.ceil(int(sommaDistanza) / 10) * 10)/10)
-                     st.session_state.prezzoFlessibile = float(st.session_state.scatoleFlessibile)*92.4
+                     st.session_state.scatoleFlessibile = int((math.ceil(int(sommaDistanza+2) / 10) * 10)/10)
+                     st.session_state.prezzoFlessibile = float(st.session_state.scatoleFlessibile)*93.30
               else:
-                     st.session_state.scatoleFlessibile = int((math.ceil(int(sommaDistanza) / 10) * 10)/10)
+                     st.session_state.scatoleFlessibile = int((math.ceil(int(sommaDistanza+2) / 10) * 10)/10)
                      st.session_state.prezzoFlessibile = float(st.session_state.scatoleFlessibile)*46
        else:
               st.warning("[Configurazione solo su richiesta](https://www.widair.com/contattaci). Scrivici a mail: info@widair.com o chiamaci a cell. 3896699635")
@@ -740,9 +782,9 @@ def installazione():
        st.write("Desideri l'installazione?")
 
        if 'sceltaInstallazioneSi' not in st.session_state:
-              st.session_state.sceltaInstallazioneSi = None
+              st.session_state.sceltaInstallazioneSi = False
        if 'sceltaInstallazioneNo' not in st.session_state:
-              st.session_state.sceltaInstallazioneNo = None
+              st.session_state.sceltaInstallazioneNo = True
        if 'prezzoFinaleInstallazione' not in st.session_state:
               st.session_state.prezzoFinaleInstallazione = 0
 
@@ -767,7 +809,8 @@ def installazione():
        
        if st.session_state.sceltaControlloTemperatura == 1:
               costoInstallazioneZone += 50*int(st.session_state.sommaZone)
-
+       
+       costoInstallazioneMacchinario = 0
        if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
               if int(st.session_state.tempBTUHaier) == 12000:
                      costoInstallazioneMacchinario = 1150
@@ -780,7 +823,7 @@ def installazione():
                      costoInstallazioneMacchinario = 1150
               elif int(st.session_state.tempBTUMitsubishi) == 18000 or int(st.session_state.tempBTUMitsubishi) == 21000 or int(st.session_state.tempBTUMitsubishi) == 24000:
                      costoInstallazioneMacchinario = 1220
-              elif int(st.session_state.tempBTUMitsubishi) == 34000 or int(st.session_state.tempBTUMitsubishi) == 43000 or int(st.session_state.tempBTUMitsubishi) == 48000 or int(st.session_state.tempBTUMitsubishi) == 60000:
+              elif int(st.session_state.tempBTUMitsubishi) == 34000 or int(st.session_state.tempBTUMitsubishi) == 43000 or int(st.session_state.tempBTUMitsubishi) == 48000 or int(st.session_state.tempBTUMitsubishi) == 68000:
                      costoInstallazioneMacchinario = 1380
               elif  int(st.session_state.tempBTUMitsubishi) == 85000:
                      costoInstallazioneMacchinario = 1540
@@ -838,6 +881,8 @@ def optional():
               st.session_state.prezzoIonizzatore = 0
        if 'sceltaCopriclima' not in st.session_state:
               st.session_state.sceltaCopriclima = None
+       if 'sceltaColoreCopriclima' not in st.session_state:
+              st.session_state.sceltaColoreCopriclima = None
        
        st.subheader("Copriclima")
        st.session_state.sceltaCopriclima = image_select(
@@ -845,9 +890,17 @@ def optional():
               images=["images/Alfa.png", "images/Sirio.png","images/Antares.png", "images/Altair.png", "images/Vega.png", "images/36.png"],
               captions=["Copriclima Alfa", "Copriclima Sirio", "Copriclima Antares", "Copriclima Altair", "Copriclima Vega", "Nessun copriclima"],
               )
+       
+       #if st.session_state.sceltaCopriclima != 0:
+       #       st.session_state.sceltaColoreCopriclima = image_select(
+       #              label="Scegli un colore per il tuo copriclima",
+       #              images=["images/RAL8025.png", "images/RAL9002.png", "images/RAL9005.png"],
+       #              captions=["RAL8025", "RAL9002", "RAL9005"],
+       #              return_value = "index",
+       #              )
 
        if st.session_state.sceltaCopriclima != "images/36.png":
-              st.session_state.prezzoCopriclima = 152.64
+              st.session_state.prezzoCopriclima = 500.00
        else:
               st.session_state.prezzoCopriclima = 0
 
@@ -935,7 +988,7 @@ def riepilogo():
               numeroColore = item[2]     # Terzo elemento (numero colore)
               # Rimuovi il numero finale dal nome
               nome = ''.join(filter(lambda x: not x.isdigit(), nome_con_numero))
-              st.write(f"**{nome}**")
+              st.write(f"**{nome.strip()}**")
               # Sostituisci il numero con il nome corrispondente
               nome_associato = associazione_nomi.get(numero, 'Elemento diffusione sconosciuto')  # Usa 'Sconosciuto' se il numero non è trovato
               st.image(f"images/{nome_associato}.png")
@@ -948,6 +1001,11 @@ def riepilogo():
                             flagSerranda = False
               else:
                      flagSerranda = False
+              
+              # Aggiungo cavalletti, tappi e eventuali kit di continuità
+              if nome_associato == "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie" or nome_associato == "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm":
+                     st.session_state.prezzoElementiDiffusione += (config.listino_prezzi_accessori['Cavalletti']*2) + config.listino_prezzi_accessori['Tappi di chiusura']
+                     # if st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1] >= 2:
               colore_associato = associazione_colori.get(numeroColore, 'Colore sconosciuto')
               st.caption(f"{nome_associato}, {colore_associato}")
               if flagSerranda == True:
@@ -995,12 +1053,12 @@ def riepilogo():
                      st.caption(f"{config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}")
 
               if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
-                     prezzoMacchina = (config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzo']*1.10) + 156.80
+                     prezzoMacchina = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzo'] + 156.80
                      st.session_state.prezzoPlenumMacchina = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzoPlenumMacchina'] + (st.session_state.sommaZone * 3)
                      st.write(f":green[**+ {format(prezzoMacchina, '.2f')}€**]")
               else:
-                     prezzoMacchina = (config.macchinaMitsubishi[f"BTU{int(st.session_state.tempBTUMitsubishi)}"]['prezzo']*1.10) + 100
-                     st.session_state.prezzoPlenumMacchina = config.macchinaMitsubishi[f"BTU{int(st.session_state.tempBTUMitsubishi)}"]['prezzoPlenumMacchina'] + (st.session_state.sommaZone * 3)
+                     prezzoMacchina = config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['prezzo'] + 100
+                     st.session_state.prezzoPlenumMacchina = config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['prezzoPlenumMacchina'] + (st.session_state.sommaZone * 3)
                      st.write(f":green[**+ {format(prezzoMacchina, '.2f')}€**]")
        
        #Comandi
