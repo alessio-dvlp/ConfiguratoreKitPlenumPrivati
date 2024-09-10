@@ -13,6 +13,7 @@ macchinaHaier = {
         "Tipo refrigerante": "R32",
         "prezzo": 1028.69, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 64.19,
+        "prezzoCopriclima": 415.80,
         "portata": "840 m3/h"
     },
     "BTU18000": {
@@ -29,6 +30,7 @@ macchinaHaier = {
         "Tipo refrigerante": "R32",
         "prezzo": 1270.35, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 78.54,
+        "prezzoCopriclima": 415.80,
         "portata": "1020 m3/h"
     },
     "BTU24000": {
@@ -45,6 +47,7 @@ macchinaHaier = {
         "Tipo refrigerante": "R32",
         "prezzo": 1477.85, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 78.54,
+        "prezzoCopriclima": 415.80,
         "portata": "1440 m3/h"
     },
     "BTU36000": {
@@ -61,6 +64,7 @@ macchinaHaier = {
         "Tipo refrigerante": "R32",
         "prezzo": 2181.35, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 92.90,
+        "prezzoCopriclima": 415.80,
         "portata": "1600 m3/h"
     },
     "BTU43000": {
@@ -77,6 +81,7 @@ macchinaHaier = {
         "Tipo refrigerante": "R32",
         "prezzo": 2341.31, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 92.90,
+        "prezzoCopriclima": 415.80,
         "portata": "2250 m3/h"
     },
     "BTU48000": {
@@ -93,6 +98,7 @@ macchinaHaier = {
         "Tipo refrigerante": "R32",
         "prezzo": 2429.22, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 92.90,
+        "prezzoCopriclima": 474.60,
         "portata": "2500 m3/h"
     },
     "BTU55000": {
@@ -109,6 +115,7 @@ macchinaHaier = {
         "Tipo refrigerante": "R32",
         "prezzo": 2735.70, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 92.90,
+        "prezzoCopriclima": 474.60,
         "portata": "2250 m3/h"
     }
 }
@@ -128,6 +135,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 1208.51, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 67.78,
+        "prezzoCopriclima": 319.20,
         "portata": "540 m3/h"
     },
     "BTU12000": {
@@ -144,6 +152,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 1395.86, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 74.95,
+        "prezzoCopriclima": 319.20,
         "portata": "660 m3/h"
     },
     "BTU18000": {
@@ -160,6 +169,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 1730.23, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 74.95,
+        "prezzoCopriclima": 319.20,
         "portata": "900 m3/h"
     },
     "BTU21000": {
@@ -176,6 +186,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 1977.81, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 82.13,
+        "prezzoCopriclima": 319.20,
         "portata": "1080 m3/h"
     },
     "BTU24000": {
@@ -192,6 +203,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 2360.82, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 82.13,
+        "prezzoCopriclima": 319.20,
         "portata": "1200 m3/h"
     },
     "BTU34000": {
@@ -208,6 +220,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 1912.79, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 92.90,
+        "prezzoCopriclima": 415.80,
         "portata": "2040 m3/h"
     },
     "BTU43000": {
@@ -224,6 +237,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 2326.18, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 92.90,
+        "prezzoCopriclima": 415.80,
         "portata": "2520 m3/h"
     },
     "BTU48000": {
@@ -240,6 +254,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 2701.44, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 100.07,
+        "prezzoCopriclima": 415.80,
         "portata": "2760 m3/h"
     },
         "BTU68000": {
@@ -256,6 +271,7 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 6825.20, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 97.51,
+        "prezzoCopriclima": 474.60,
         "portata": "2760 m3/h"
     },
         "BTU85000": {
@@ -272,14 +288,17 @@ macchinaMitsubishi = {
         "Tipo refrigerante": "R32",
         "prezzo": 7830.00, # prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 97.51,
+        "prezzoCopriclima": 474.60,
         "portata": "2760 m3/h"
     }
 }
 
 listino_prezzi_accessori = {
-    "Serranda By-pass": {"prezzo": 36.00, "posizioneImmagine": "images/Serranda By-pass.png" , "info":"Mantiene la pressione statica nella rete dei condotti all'interno dei limiti prestabiliti, assicurando il corretto funzionamento del sistema di climatizzazione a condotti."},
-    "Flessibile Ø 150 mm isolato": {"prezzo": 4.60, "info":""},
-    "Flessibile Ø 150 mm non isolato": {"prezzo": 1.82, "info":""},
+    "Sportello d'ispezione": {"prezzo": 16.10, "posizioneImmagine": "" , "info":""},
+    "Serranda By-pass": {"prezzo": 35.38, "posizioneImmagine": "images/Serranda By-pass.png" , "info":"Mantiene la pressione statica nella rete dei condotti all'interno dei limiti prestabiliti, assicurando il corretto funzionamento del sistema di climatizzazione a condotti."},
+    "Ionizzatore": {"prezzo": 330.23, "posizioneImmagine": "" , "info":""},
+    "Flessibile Ø 150 mm isolato": {"prezzo": 46.00, "info":"Prezzo 10m"},
+    "Flessibile Ø 150 mm sanificante": {"prezzo": 93.30, "info":"Prezzo 10m"},
     "Controtelaio":{"prezzo": 30.00, "info":""},
     "Griglia di ripresa 600x400 mm": {"prezzo": 62.73, "prezzoControtelaio": 13.00, "posizioneImmagine": "", "info":""},
     "Griglia di ripresa 800x400 mm": {"prezzo": 76.66, "prezzoControtelaio": 12.00, "posizioneImmagine": "", "info":""},
@@ -287,7 +306,7 @@ listino_prezzi_accessori = {
     "Griglia di ripresa 1000x600 mm": {"prezzo": 113.85, "prezzoControtelaio": 16.00, "posizioneImmagine": "", "info":""},
     "Fascette stringitubo 175":{"prezzo": 0.84, "info":""},
     "Fascette stringitubo 225":{"prezzo": 1.01, "info":""},
-    "Vite autoforante": {"prezzo":1.50, "info":"Vite autoforante 4.2 x 16mm n.8"},
+    "Vite autoforante": {"prezzo":0.40, "info":"Vite autoforante 4.2 x 16mm n.8 - 25.09€ per 1000pz"},
     "Dadi": {"prezzo":2.00, "info":""},
     "Tasselli": {"prezzo":3.00, "info":"6 Tasselli"},
     "Barra filettata": {"prezzo":1.15, "info":"4 per sistema manuale, 6 per sistema motorizzato"},
@@ -301,19 +320,19 @@ listino_prezzi_accessori = {
     "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie": {"prezzo": 45.13, "prezzoPlenum":53.25, "info":"Diffusore a feritoie in alluminio estruso con deflettore a goccia nero RAL9005 in polipropilene e serranda a scorrimento. Completa di plenum in pannello preisolato spessore 12 mm e cavalletti di montaggio (2 pezzi)"},
     "Sistema Motorizzato Cablato": {
            "Centralina":{"prezzo": 283.86, "info":""},
-           "Cronotermostato":{"prezzo": 86.19, "info":""},
-           "Interfaccia di comunicazione":{"prezzo": 231.62, "info":""},
+           "Cronotermostato":{"prezzo": 89.07, "info":"Cronotermostato digitale filare con programmazione settimanale a 2 livelli: Comfort/ECO. Consente un’impostazione adattata ad ogni impianto, il blocco delle funzionalità, la limitazione delle temperature di setup."},
+           "Interfaccia di comunicazione":{"prezzo": 248.29, "info":""}, 
            "Scatola stagna":{"prezzo": 50, "info":""},
            "Cablatura sistema":{"prezzo": 100, "info":""}
     },
     "Sistema Motorizzato Wireless": {
            "Centralina":{"prezzo": 321.62, "info":""},
-           "Cronotermostato":{"prezzo": 120.18, "info":""},
-           "Interfaccia di comunicazione":{"prezzo": 231.62, "info":""},
+           "Cronotermostato":{"prezzo": 124.18, "info":"Termostato digitale con schermo e-ink a basso consumo, comunicazione radio bidirezionale, funziona in abbinamento alle centrali del sistema Zoning."},
+           "Interfaccia di comunicazione":{"prezzo": 248.29, "info":""},
            "Scatola stagna":{"prezzo": 50, "info":""},
            "Cablatura sistema":{"prezzo": 100, "info":""}
     },
-    "Netbox":{"prezzo": 242.65, "info":"Consente il controllo da remoto della temperatura degli ambienti tramite qualsiasi dispositivo mobile (smartphone, tablet) o fisso (PC) grazie alla webapp: Zoening 2.0 (Disponibile in App Store e Google Play Store)."},
+    "Netbox":{"prezzo": 250.73, "info":"Consente il controllo da remoto della temperatura degli ambienti tramite qualsiasi dispositivo mobile (smartphone, tablet) o fisso (PC) grazie alla webapp: Zoening 2.0 (Disponibile in App Store e Google Play Store)."},
     "Kit Continuità": 2.84,
     "Tappi di chiusura": 10.22,
     "Cavalletti": 1.00
