@@ -13,21 +13,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
     page_icon="images/widairIcon.png")
 
-script_google = """
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16646032163">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-16646032163');
-</script>
-"""
-
-st.markdown(f'<head>{script_google}</head>', unsafe_allow_html=True)
-
 # Applico CSS alla pagina
 with open('css/style.css') as f:
        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
