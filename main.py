@@ -1302,11 +1302,17 @@ def riepilogo():
        
        # Accessori in dotazione
        st.subheader("Accessori in dotazione")
-       st.caption(f"{st.session_state.sommaZone*2} fascette stringitubo")
+       st.session_state.riepilogo_ordine += "Accessori in dotazione: "
+       st.caption(f"{st.session_state.sommaZone*2} fascette stringitubo. ")
+       st.session_state.riepilogo_ordine += f"{st.session_state.sommaZone*2} fascette stringitubo. "
        st.caption(f"{st.session_state.numeroBarraFilettata} barre filettate")
+       st.session_state.riepilogo_ordine += f"{st.session_state.numeroBarraFilettata} barre filettate. "
        st.caption("15 dadi flangiati M8")
+       st.session_state.riepilogo_ordine += "15 dadi flangiati M8. "
        st.caption("15 viti autoforanti 4,2x16mm")
+       st.session_state.riepilogo_ordine += "15 viti autoforanti 4,2x16mm"
        st.caption("6 Tasselli in ottone")
+       st.session_state.riepilogo_ordine += "6 Tasselli in ottone"
        st.divider()
 
        # Download Libretto Istruzioni
