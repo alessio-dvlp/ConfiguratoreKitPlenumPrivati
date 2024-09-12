@@ -10,13 +10,76 @@ import string
 # Configurazione base pagina streamlit e CSS
 st.set_page_config(
     page_title="Configuratore",
-    initial_sidebar_state="collapsed")
+    initial_sidebar_state="collapsed",
+    page_icon="images/widairIcon.png")
 
 # Applico CSS alla pagina
 with open('css/style.css') as f:
        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 posizioneTastoAiuto = [0.89,0.11]
+
+# CSS per la navbar
+st.markdown(
+    """
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    .navbar {
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       background-color: #ffffff;  */Sfondo */
+       color: #9a99a0;  /* Testo grigio scuro */
+       padding: 16px;  /* Spazio ridotto per una barra più sottile */
+       z-index: 1000;
+       display: flex;
+       align-items: center;
+       font-size: 12px;  /* Testo più piccolo */
+       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);  /* Ombra leggera */
+    }
+    .navbar a {
+       color: #9a99a0;
+       text-decoration: none;
+       padding: 0 10px;  /* Spazio ridotto tra i link */
+    }
+    .navbar a:hover {
+       color: #0b5baa;  /* Colore blu al passaggio del mouse */
+       text-decoration: none;  /* Nessuna sottolineatura al passaggio del mouse */
+    }
+    body {
+       padding-top: 50px;  /* Spazio per la barra fissa */
+    }
+    .material-icons {
+       vertical-align: middle;  /* Allinea verticalmente l'icona */
+       margin-right: 5px;  /* Spazio tra l'icona e il testo */
+       font-size: 16px;  /* Dimensione dell'icona (puoi modificarla) */
+    }
+    .logo {
+       height: 30px;  /* Altezza del logo aziendale */
+       margin-right: 10px;  /* Spazio tra il logo aziendale e i contatti */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Contenuto HTML Navbar
+st.markdown(
+    """
+    <div class="navbar">
+        <a href="http://www.widair.com" target="_blank">  <!-- Link al logo aziendale -->
+            <img src="https://widair.com/img/logo-1717496166.jpg" alt="Logo Aziendale" class="logo"> <!-- Logo aziendale -->
+        <a href="tel:+3896699635">
+            <span class="material-icons">phone</span>Chiamaci
+        </a>
+        <a href="mailto:info@widair.com">
+            <span class="material-icons">email</span>Mandaci una mail
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 def aiuto():
        st.markdown("""
@@ -217,6 +280,8 @@ def controlloTemperatura(numeroPagina):
              st.session_state.sceltaTipologiaSistema = ""
        if 'prezzoBarraFilettata' not in st.session_state:
              st.session_state.prezzoBarraFilettata = 0
+       if 'numeroBarraFilettata' not in st.session_state:
+             st.session_state.numeroBarraFilettata = 0
        if 'prezzoControlloTemperatura' not in st.session_state:
              st.session_state.prezzoControlloTemperatura = 0
        if 'prezzoSerrandaBypass' not in st.session_state:
@@ -233,6 +298,7 @@ def controlloTemperatura(numeroPagina):
        if st.session_state.sceltaControlloTemperatura == 1:
               st.session_state.prezzoSerrandaBypass = config.listino_prezzi_accessori['Serranda By-pass']['prezzo']
               st.session_state.prezzoBarraFilettata = 6 * config.listino_prezzi_accessori['Barra filettata']['prezzo']
+              st.session_state.numeroBarraFilettata = 6
               st.divider()
               st.session_state.sceltaTipologiaSistema = image_select(
               label="Tipologia di sistema",
@@ -245,6 +311,7 @@ def controlloTemperatura(numeroPagina):
               st.session_state.prezzoSerrandaBypass = 0
               st.session_state.sceltaTipologiaSistema = ""
               st.session_state.prezzoBarraFilettata = 4 * config.listino_prezzi_accessori['Barra filettata']['prezzo']
+              st.session_state.numeroBarraFilettata = 4
 
        if st.session_state.sceltaTipologiaSistema == 0:
               with st.container(border=True):
@@ -352,7 +419,10 @@ def sceltaMacchina(numeroPagina):
                             st.checkbox(f"**{macchina[f'BTU{int(BTU)}']['descrizione']}**", key=f"checkbox_{checkbox_label}")
                             if 'Mitsubishi' in str(macchina):
                                    st.subheader("")
-                            st.subheader(f"{format(macchina[f'BTU{int(BTU)}']['prezzo'], '.2f')}€")
+                            if 'Haier' in str(macchina):
+                                   st.subheader(f"{format(macchina[f'BTU{int(BTU)}']['prezzo'] + 156.80, '.2f')}€")
+                            else:
+                                   st.subheader(f"{format(macchina[f'BTU{int(BTU)}']['prezzo'] + 100, '.2f')}€")
                             # with st.expander("**Dati tecnici**", expanded=False, icon=":material/settings:"):
                             with st.popover("**Dati tecnici**", use_container_width=True):
                                    st.write("**POTENZA MACCHINA**")
@@ -410,7 +480,7 @@ def sceltaMacchina(numeroPagina):
                      st.warning("Non è possibile selezionare entrambe le macchina. Effettua una scelta.")
                      disabilitaAvantiSceltaMacchina = True
               elif not st.session_state.flagHaier and not st.session_state.flagMitsubishi:
-                     st.warning("Seleziona almeno una macchina.")
+                     st.warning("Seleziona una macchina.")
                      disabilitaAvantiSceltaMacchina = True
               else: 
                      disabilitaAvantiSceltaMacchina = False
@@ -756,19 +826,22 @@ def distanze(numeroPagina):
                                    flagErrorDistanza = True
                             else:
                                    distanza_float = float(distanza)
-                                   sommaDistanza += distanza_float
-
+                                   # Se la stanza ha più elementi di diffusione, moltiplico la distanza data in input dall'utente per il numero di zone
+                                   if st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1] != 1:
+                                          sommaDistanza += distanza_float * float(st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1]) + 2
+                                   else:
+                                          sommaDistanza += distanza_float + 2
                                    if distanza_float > 10:
                                           flagSuRichiesta = True
                                    elif distanza_float > 5:
                                           st.session_state.flagSanificante = True
                      else:
                             flagEmpty = True
-                                           
+                                          
        if flagSuRichiesta:
               st.warning("[Configurazione solo su richiesta](https://www.widair.com/contattaci). Scrivici a mail: info@widair.com o chiamaci a cell. [+389 669 9635](tel:3896699635)")
        else:
-              scatoleFlessibile = int(math.ceil((sommaDistanza + 2) / 10) * 10 / 10)
+              scatoleFlessibile = int(math.ceil(sommaDistanza / 10) * 10 / 10)
               prezzo_key = 'Flessibile Ø 150 mm sanificante' if st.session_state.flagSanificante else 'Flessibile Ø 150 mm isolato'
               st.session_state.scatoleFlessibile = scatoleFlessibile
               st.session_state.prezzoFlessibile = scatoleFlessibile * float(config.listino_prezzi_accessori[prezzo_key]['prezzo'])
@@ -1178,6 +1251,7 @@ def riepilogo():
               st.caption(f"Per il tuo impianto sono necessari {st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø 150")
               st.session_state.riepilogo_ordine += f"{st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø 150. "
               #st.write(f":green[**+ {format(st.session_state.prezzoFlessibile, '.2f')}€**]")
+              st.write()
        st.divider()
 
        # Installazione
@@ -1225,6 +1299,15 @@ def riepilogo():
                             st.session_state.riepilogo_ordine += "Ionizzatore incluso. "
                             #st.write(f":green[**+ {format(st.session_state.prezzoIonizzatore, '.2f')}€**]")
               st.divider()
+       
+       # Accessori in dotazione
+       st.subheader("Accessori in dotazione")
+       st.caption(f"{st.session_state.sommaZone*2} fascette stringitubo")
+       st.caption(f"{st.session_state.numeroBarraFilettata} barre filettate")
+       st.caption("15 dadi flangiati M8")
+       st.caption("15 viti autoforanti 4,2x16mm")
+       st.caption("6 Tasselli in ottone")
+       st.divider()
 
        # Download Libretto Istruzioni
        st.subheader("Libretto di istruzioni Widbox")
@@ -1247,9 +1330,14 @@ def riepilogo():
 
        pagamentoBonificoBancario = st.radio("**Come vuoi pagare?**", ['Carta di credito', 'Bonifico Bancario'], horizontal=True)
        if pagamentoBonificoBancario == 'Bonifico Bancario':
-              Destinatario = st.text_input('Inserisci la tua mail, ti invieremo un codice alfanumerico da mettere nella causale e il nostro IBAN')
+              Nome = st.text_input('Inserisci il tuo nome')
+              Mail = st.text_input('Inserisci la tua mail, ti invieremo un codice alfanumerico da mettere nella causale e il nostro IBAN')
+              NumeroDiTelefono = st.text_input('Inserisci il tuo numero di telefono')
        else:
-              Destinatario = ""
+              Nome = ""
+              Mail = ""
+              NumeroDiTelefono = ""
+       st.divider()
 
        # 55€ di spedizione + 35€ per ogni scatola di sanificante
        st.subheader("Totale Ordine")
@@ -1259,7 +1347,7 @@ def riepilogo():
        prezzoConIva = float(prezzoImponibileIniziale * 1.22)
        commissione = float((prezzoConIva * 3)/100)
        prezzoImponibileFinale = float(prezzoImponibileIniziale + commissione)
-       st.session_state.prezzoFinale = float(prezzoImponibileFinale * 1.22)
+       st.session_state.prezzoFinale = float((prezzoImponibileIniziale*1.22) + commissione)
                                   
        st.metric(value=f"{format(prezzoImponibileFinale, '.2f')}€", label=":gray[Prezzo IVA esclusa]")
        st.write(f"{format(st.session_state.prezzoFinale, '.2f')}€ (IVA inclusa)")
@@ -1273,6 +1361,7 @@ def riepilogo():
               if pagamentoBonificoBancario == 'Bonifico Bancario':
                      alphanumeric_characters = string.ascii_letters + string.digits
                      code = ''.join(random.choice(alphanumeric_characters) for _ in range(6))
+                     configuratoreNtfy = st.secrets["ConfiguratoreNTFY"]
                      notifica = f"""
                      IBAN: IT40H0200830290000106048658
                      Codice alfanumerico da inserire nella causale del bonifico: {code.upper()}
@@ -1280,23 +1369,22 @@ def riepilogo():
                      Ordine:\n{st.session_state.riepilogo_ordine}\n
                      """ 
                      if st.button("**RICEVI MAIL**", type="primary", use_container_width=True):
-                            if Destinatario != "":
-                                   st.info("NOTA: Funzione implementata, ma non eseguita per non intasare link primario")
-                                   #try:
-                                   #       requests.post(configuratoreNtfy,
-                                   #              data=notifica.encode('utf-8'),
-                                   #              headers={
-                                   #                     "Title": f"{Destinatario}",
-                                   #              })
-                                   #       st.success('Riceverai a breve una mail con i dati per effettuare il bonifico', icon=":material/mail:")
-                                   #except Exception as e:
-                                   #       st.error("Errore nell'invio della mail. Contatta il supporto [cliccando qui](https://www.widair.com/contattaci) o riprova", icon=":material/mail:")
+                            if Mail != "":
+                                   try:
+                                          requests.post(configuratoreNtfy,
+                                                 data=notifica.encode('utf-8'),
+                                                 headers={
+                                                        "Title": f"{Nome} - {Mail} - {NumeroDiTelefono}",
+                                                 })
+                                          st.success('Riceverai a breve una mail con i dati per effettuare il bonifico', icon=":material/mail:")
+                                   except Exception as e:
+                                          st.error("Errore nell'invio della mail. Contatta il supporto [cliccando qui](https://www.widair.com/contattaci) o riprova", icon=":material/mail:")
                             else:
                                    st.error(f"Non hai inserito la tua mail", icon=":material/mail:")
               else:
                      stripe.api_key = st.secrets["stripeAPI_test"]
                      session = stripe.checkout.Session.create(
-                            payment_method_types=['card','sepa_debit','klarna'],
+                            payment_method_types=['card','klarna','paypal'],
                             line_items=[{
                                    'price_data': {
                                    'currency': 'eur',
@@ -1312,7 +1400,7 @@ def riepilogo():
                                    success_url='https://widair.com/content/7-conferma-ordine',
                                    cancel_url='https://widair.com',
                                    shipping_address_collection={
-                                          'allowed_countries': ['IT'],  # Specifica i paesi in cui è consentita la spedizione
+                                          'allowed_countries': ['IT'],  # Paesi in cui è consentita la spedizione
                                    },
                                    phone_number_collection={"enabled": True},
                                    tax_id_collection={"enabled": True},
