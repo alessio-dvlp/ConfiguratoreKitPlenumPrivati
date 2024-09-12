@@ -1310,9 +1310,9 @@ def riepilogo():
        st.caption("15 dadi flangiati M8")
        st.session_state.riepilogo_ordine += "15 dadi flangiati M8. "
        st.caption("15 viti autoforanti 4,2x16mm")
-       st.session_state.riepilogo_ordine += "15 viti autoforanti 4,2x16mm"
+       st.session_state.riepilogo_ordine += "15 viti autoforanti 4,2x16mm. "
        st.caption("6 Tasselli in ottone")
-       st.session_state.riepilogo_ordine += "6 Tasselli in ottone"
+       st.session_state.riepilogo_ordine += "6 Tasselli in ottone. "
        st.divider()
 
        # Download Libretto Istruzioni
