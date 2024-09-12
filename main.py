@@ -623,14 +623,14 @@ def elementiDiffusione(numeroPagina):
                      key=f"{st.session_state.elencoNomiStanze[i]}{i+1}"
                      )
 
-                     # Richiesta unisci plenum
-                     if int(st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1]) > 1:
-                            if st.session_state.locazioneImpianto == "Abitazione":
-                                   if st.session_state.elDifTip in [2, 3]:
-                                          unisciDiffusori = st.toggle("Vuoi unire i due diffusori della stanza in un unico plenum?", value=False, key=f"unisciDiffusori{i}")
-                            else:
-                                   if st.session_state.elDifTip in [6, 7]:
-                                          unisciDiffusori = st.toggle("Vuoi unire i due diffusori della stanza in un unico plenum?", value=False, key=f"unisciDiffusori{i}")
+                     #Richiesta unisci plenum
+                     #if int(st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1]) > 1:
+                     #       if st.session_state.locazioneImpianto == "Abitazione":
+                     #              if st.session_state.elDifTip in [2, 3]:
+                     #                     unisciDiffusori = st.toggle("Vuoi unire i due diffusori della stanza in un unico plenum?", value=False, key=f"unisciDiffusori{i}")
+                     #       else:
+                     #              if st.session_state.elDifTip in [6, 7]:
+                     #                     unisciDiffusori = st.toggle("Vuoi unire i due diffusori della stanza in un unico plenum?", value=False, key=f"unisciDiffusori{i}")
 
                      if st.session_state.locazioneImpianto == "Abitazione":
                             if st.session_state.elDifTip in [1, 2, 3]:
