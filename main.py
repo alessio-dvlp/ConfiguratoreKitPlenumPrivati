@@ -1341,7 +1341,7 @@ def riepilogo():
 
        # 55€ di spedizione + 35€ per ogni scatola di sanificante
        st.subheader("Totale Ordine")
-       st.caption("Spedizione inclusa in tutta italia (isole comprese)")
+       st.caption("Spedizione inclusa in tutta italia (isole maggiori comprese es. Sicilia, Sardegna)")
        # 0.40€ - Viti Autoforanti
        prezzoImponibileIniziale = float(st.session_state.prezzoPlenumMacchina) + float(st.session_state.prezzoBarraFilettata) + float(st.session_state.prezzoSerrandaBypass) + float(st.session_state.prezzoElementiDiffusione) + float(st.session_state.prezzoControlloTemperatura) + float(prezzoMacchina) + float(st.session_state.prezzoComandoManualeMitsubishi) + float(st.session_state.prezzoWiFiComandoManualeMitsubishi) + float(st.session_state.prezzoGriglia) + float(config.listino_prezzi_accessori[f'Griglia di ripresa {st.session_state.dimensioneGriglia} mm']['prezzoControtelaio']) + float(st.session_state.prezzoFlessibile) + float(st.session_state.scatoleFlessibile*35) + float(st.session_state.prezzoFinaleInstallazione) + float(st.session_state.prezzoCopriclima) + float(st.session_state.prezzoIonizzatore + 0.40) + 55
        prezzoConIva = float(prezzoImponibileIniziale * 1.22)
