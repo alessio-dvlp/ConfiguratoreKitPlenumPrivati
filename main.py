@@ -17,20 +17,6 @@ st.set_page_config(
 with open('css/style.css') as f:
        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-script_google = """
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16646032163">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-16646032163');
-</script>
-"""
-
-st.markdown(f'<head>{script_google}</head>', unsafe_allow_html=True)
 posizioneTastoAiuto = [0.89,0.11]
 
 # CSS per la navbar
