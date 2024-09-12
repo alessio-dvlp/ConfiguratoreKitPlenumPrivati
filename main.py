@@ -1347,7 +1347,7 @@ def riepilogo():
        prezzoConIva = float(prezzoImponibileIniziale * 1.22)
        commissione = float((prezzoConIva * 3)/100)
        prezzoImponibileFinale = float(prezzoImponibileIniziale + commissione)
-       st.session_state.prezzoFinale = float((prezzoImponibileIniziale*1.22) + commissione)
+       st.session_state.prezzoFinale = float((prezzoImponibileIniziale + commissione) * 1.22)
                                   
        st.metric(value=f"{format(prezzoImponibileFinale, '.2f')}€", label=":gray[Prezzo IVA esclusa]")
        st.write(f"{format(st.session_state.prezzoFinale, '.2f')}€ (IVA inclusa)")
