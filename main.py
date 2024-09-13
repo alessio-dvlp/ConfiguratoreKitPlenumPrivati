@@ -1351,7 +1351,7 @@ def riepilogo():
        # 0.40€ - Viti Autoforanti
        prezzoImponibileIniziale = float(st.session_state.prezzoPlenumMacchina) + float(st.session_state.prezzoBarraFilettata) + float(st.session_state.prezzoSerrandaBypass) + float(st.session_state.prezzoElementiDiffusione) + float(st.session_state.prezzoControlloTemperatura) + float(prezzoMacchina) + float(st.session_state.prezzoComandoManualeMitsubishi) + float(st.session_state.prezzoWiFiComandoManualeMitsubishi) + float(st.session_state.prezzoGriglia) + float(config.listino_prezzi_accessori[f'Griglia di ripresa {st.session_state.dimensioneGriglia} mm']['prezzoControtelaio']) + float(st.session_state.prezzoFlessibile) + float(st.session_state.scatoleFlessibile*35) + float(st.session_state.prezzoFinaleInstallazione) + float(st.session_state.prezzoCopriclima) + float(st.session_state.prezzoIonizzatore + 0.40) + 55
        prezzoConIva = float(prezzoImponibileIniziale * 1.22)
-       commissione = float((prezzoConIva * 3)/100)
+       commissione = float((prezzoConIva * 5)/100)
        prezzoImponibileFinale = float(prezzoImponibileIniziale + commissione)
        st.session_state.prezzoFinale = float((prezzoImponibileIniziale + commissione) * 1.22)
                                   
