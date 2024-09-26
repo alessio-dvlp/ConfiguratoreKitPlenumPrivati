@@ -449,38 +449,7 @@ def sceltaMacchina(numeroPagina):
                      st.session_state.elencoNZonePerStanza.append((nome, arrotonda_valore(n_zone_stanza)))
                      st.session_state.sommaZone += arrotonda_valore(n_zone_stanza)
        
-       # Calcolo della portata della macchina
-       try:
-              portataMacchina = min(
-              int(config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata'].replace(" m3/h", "")),
-              int(config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata'].replace(" m3/h", ""))
-              )
-       except:
-              if BTUHaier == None and BTUMitsubishi == None:
-                     st.caption("Per il tuo impianto sono necessarie più di 7 zone")
-                     st.warning("[Configurazione solo su richiesta](https://www.widair.com/contattaci). Scrivici a mail: info@widair.com o chiamaci a cell. [+389 669 9635](tel:3896699635)")
-                     disabilitaAvantiSceltaMacchina = True
-                     return
-              elif BTUHaier == None and BTUMitsubishi != None:
-                     portataMacchina = int(config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata'].replace(" m3/h", ""))
-              elif BTUMitsubishi == None and BTUHaier != None:
-                     portataMacchina = int(config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata'].replace(" m3/h", ""))
-
-       # Calcola le zone con la portata iniziale
-       calcola_zone(portataMacchina, 350)
-
-       # Se la somma delle zone supera 7, ricalcola con una portata maggiore
-       if st.session_state.sommaZone > 7:
-              st.session_state.sommaZone = 0
-              st.session_state.elencoNZonePerStanza = []
-              st.session_state.costoTrasportoFlessibile = 60
-              st.session_state.diametroFlessibile = "200"
-              calcola_zone(portataMacchina, 600)
-       else:
-              st.session_state.costoTrasportoFlessibile = 35
-              st.session_state.diametroFlessibile = "150"
-
-       # Funzione per visualizzare le informazioni delle macchine
+              # Funzione per visualizzare le informazioni delle macchine
        def mostra_macchina(macchina, BTU, flag_non_disponibile, checkbox_label):
               if not flag_non_disponibile:
                      with st.container(border=True):
@@ -553,6 +522,39 @@ def sceltaMacchina(numeroPagina):
                      disabilitaAvantiSceltaMacchina = True
               else: 
                      disabilitaAvantiSceltaMacchina = False
+       
+       # Calcolo della portata della macchina
+       try:
+              if st.session_state.flagHaier == True:
+                     portataMacchina = int(config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata'].replace(" m3/h", ""))
+              else:
+                     portataMacchina = int(config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata'].replace(" m3/h", ""))
+              
+              #st.write(f"Portata Aria Macchina Selezionata: {portataMacchina}")
+       except:
+              if BTUHaier == None and BTUMitsubishi == None:
+                     st.caption("Per il tuo impianto sono necessarie più di 7 zone")
+                     st.warning("[Configurazione solo su richiesta](https://www.widair.com/contattaci). Scrivici a mail: info@widair.com o chiamaci a cell. [+389 669 9635](tel:3896699635)")
+                     disabilitaAvantiSceltaMacchina = True
+                     return
+              elif BTUHaier == None and BTUMitsubishi != None:
+                     portataMacchina = int(config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata'].replace(" m3/h", ""))
+              elif BTUMitsubishi == None and BTUHaier != None:
+                     portataMacchina = int(config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata'].replace(" m3/h", ""))
+
+       # Calcola le zone con la portata iniziale
+       calcola_zone(portataMacchina, 350)
+
+       # Se la somma delle zone supera 7, ricalcola con una portata maggiore
+       if st.session_state.sommaZone > 7:
+              st.session_state.sommaZone = 0
+              st.session_state.elencoNZonePerStanza = []
+              st.session_state.costoTrasportoFlessibile = 60
+              st.session_state.diametroFlessibile = "200"
+              calcola_zone(portataMacchina, 600)
+       else:
+              st.session_state.costoTrasportoFlessibile = 35
+              st.session_state.diametroFlessibile = "150"
 
        # Aggiornamento delle variabili temporanee - Necessario per calcolo griglia di ripresa
        st.session_state.tempBTUHaier = BTUHaier if st.session_state.flagHaier else None
@@ -898,7 +900,7 @@ def distanze(numeroPagina):
                                           st.session_state.flagSanificante = True
                      else:
                             flagEmpty = True
-       sommaDistanza += st.session_state.sommaZone * 2
+       sommaDistanza += st.session_state.sommaZone * 1
                                           
        if flagSuRichiesta:
               st.warning("[Configurazione solo su richiesta](https://www.widair.com/contattaci). Scrivici a mail: info@widair.com o chiamaci a cell. [+389 669 9635](tel:3896699635)")
