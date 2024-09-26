@@ -6,6 +6,7 @@ import stripe
 import requests
 import random
 import string
+import time
 
 # Configurazione base pagina streamlit e CSS
 st.set_page_config(
@@ -18,68 +19,71 @@ with open('css/style.css') as f:
        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 posizioneTastoAiuto = [0.89,0.11]
+if 'flagCaricamento' not in st.session_state:
+    st.session_state.flagCaricamento = True
 
-# CSS per la navbar
-st.markdown(
-    """
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-    .navbar {
-       position: fixed;
-       top: 0;
-       left: 0;
-       right: 0;
-       background-color: #ffffff;  */Sfondo */
-       color: #9a99a0;  /* Testo grigio scuro */
-       padding: 16px;  /* Spazio ridotto per una barra più sottile */
-       z-index: 1000;
-       display: flex;
-       align-items: center;
-       font-size: 12px;  /* Testo più piccolo */
-       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);  /* Ombra leggera */
-    }
-    .navbar a {
-       color: #9a99a0;
-       text-decoration: none;
-       padding: 0 10px;  /* Spazio ridotto tra i link */
-    }
-    .navbar a:hover {
-       color: #0b5baa;  /* Colore blu al passaggio del mouse */
-       text-decoration: none;  /* Nessuna sottolineatura al passaggio del mouse */
-    }
-    body {
-       padding-top: 50px;  /* Spazio per la barra fissa */
-    }
-    .material-icons {
-       vertical-align: middle;  /* Allinea verticalmente l'icona */
-       margin-right: 5px;  /* Spazio tra l'icona e il testo */
-       font-size: 16px;  /* Dimensione dell'icona (puoi modificarla) */
-    }
-    .logo {
-       height: 30px;  /* Altezza del logo aziendale */
-       margin-right: 10px;  /* Spazio tra il logo aziendale e i contatti */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+if st.session_state.flagCaricamento == False:
+       # CSS per la navbar
+       st.markdown(
+       """
+       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+       <style>
+       .navbar {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              background-color: #ffffff;  */Sfondo */
+              color: #9a99a0;  /* Testo grigio scuro */
+              padding: 16px;  /* Spazio ridotto per una barra più sottile */
+              z-index: 1000;
+              display: flex;
+              align-items: center;
+              font-size: 12px;  /* Testo più piccolo */
+              box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);  /* Ombra leggera */
+       }
+       .navbar a {
+              color: #9a99a0;
+              text-decoration: none;
+              padding: 0 10px;  /* Spazio ridotto tra i link */
+       }
+       .navbar a:hover {
+              color: #0b5baa;  /* Colore blu al passaggio del mouse */
+              text-decoration: none;  /* Nessuna sottolineatura al passaggio del mouse */
+       }
+       body {
+              padding-top: 50px;  /* Spazio per la barra fissa */
+       }
+       .material-icons {
+              vertical-align: middle;  /* Allinea verticalmente l'icona */
+              margin-right: 5px;  /* Spazio tra l'icona e il testo */
+              font-size: 16px;  /* Dimensione dell'icona (puoi modificarla) */
+       }
+       .logo {
+              height: 30px;  /* Altezza del logo aziendale */
+              margin-right: 10px;  /* Spazio tra il logo aziendale e i contatti */
+       }
+       </style>
+       """,
+       unsafe_allow_html=True
+       )
 
-# Contenuto HTML Navbar
-st.markdown(
-    """
-    <div class="navbar">
-        <a href="http://www.widair.com" target="_blank">  <!-- Link al logo aziendale -->
-            <img src="https://widair.com/img/logo-1717496166.jpg" alt="Logo Aziendale" class="logo"> <!-- Logo aziendale -->
-        <a href="tel:+3896699635">
-            <span class="material-icons">phone</span>Chiamaci
-        </a>
-        <a href="mailto:info@widair.com">
-            <span class="material-icons">email</span>Mandaci una mail
-        </a>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+       # Contenuto HTML Navbar
+       st.markdown(
+       """
+       <div class="navbar">
+              <a href="http://www.widair.com" target="_blank">  <!-- Link al logo aziendale -->
+              <img src="https://widair.com/img/logo-1717496166.jpg" alt="Logo Aziendale" class="logo"> <!-- Logo aziendale -->
+              <a href="tel:+3896699635">
+              <span class="material-icons">phone</span>Chiamaci
+              </a>
+              <a href="mailto:info@widair.com">
+              <span class="material-icons">email</span>Mandaci una mail
+              </a>
+       </div>
+       """,
+       unsafe_allow_html=True
+       )
 
 def aiuto():
        st.markdown("""
@@ -111,6 +115,37 @@ def aiuto():
        """, unsafe_allow_html=True)
        st.write("")
 
+def caricamento():
+    # Aggiungi CSS per centrare l'immagine
+    st.markdown(
+        """
+        <style>
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 9vh;  /* Altezza di base */
+        }
+
+        @media (max-width: 600px) {
+            .centered {
+                height: 19vh;  /* Altezza maggiore per schermi piccoli */
+            }
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown('<div class="centered">', unsafe_allow_html=True)
+    st.image("images/WidairAnimazione.gif")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    time.sleep(3.5)
+    st.session_state.page = "Tipologia Impianto"
+    st.session_state.flagCaricamento = False
+    st.rerun()
+
 def tipologiaImpianto(numeroPagina):
        st.caption(f"Pagina {numeroPagina} di 14")
        st.image("images/WidboxHomepage.png")
@@ -134,15 +169,15 @@ def funzioneImpianto(numeroPagina):
              st.session_state.fattoreFunzioneImpianto = 100
        sceltaFunzioneImpianto = image_select(
                      label="Scegli la funzione dell'impianto",
-                     images=["images/24.png", "images/25.png"],
-                     captions=["Riscaldamento & Raffreddamento", "Raffreddamento (l'impianto funzionerà anche per riscaldamento, tuttavia, è sotto dimensionato per questa funzione)"],
+                     images=["images/25.png","images/24.png"],
+                     captions=["Raffreddamento (l'impianto funzionerà anche per riscaldamento, tuttavia, è sotto dimensionato per questa funzione)", "Riscaldamento & Raffreddamento"],
                      return_value = "index"
                      )
               
        if sceltaFunzioneImpianto == 0:
-             st.session_state.fattoreFunzioneImpianto = 150
-       else:
              st.session_state.fattoreFunzioneImpianto = 100
+       else:
+             st.session_state.fattoreFunzioneImpianto = 150
        
        col1, col2 = st.columns([0.5,0.5])
        with col1:
@@ -362,6 +397,10 @@ def sceltaMacchina(numeroPagina):
               st.session_state.tempBTUHaier = ""
        if 'tempBTUMitsubishi' not in st.session_state:
               st.session_state.tempBTUMitsubishi = ""
+       if 'costoTrasportoFlessibile' not in st.session_state:
+              st.session_state.costoTrasportoFlessibile = 0
+       if 'diametroFlessibile' not in st.session_state:
+              st.session_state.diametroFlessibile = "0"
        
        mq_totali = 0
        risultati = []
@@ -384,21 +423,6 @@ def sceltaMacchina(numeroPagina):
 
        # Calcolo BTU
        valoreBTU = st.session_state.fattoreFunzioneImpianto * mq_totali
-
-       # Funzione per arrotondare i valori
-       def arrotonda_valore(valore):
-              return max(1, round(valore))
-       
-       # Calcolo delle zone per stanza
-       st.session_state.sommaZone = 0
-       for i, (nome, prodotto) in enumerate(risultati, start=1):
-              m3pStanza = (prodotto * (valoreBTU / 10)) / 100
-              nZoneStanza = m3pStanza / 770.0 # Nuovo valore 350
-              st.session_state.elencoNZonePerStanza.append((nome, arrotonda_valore(nZoneStanza)))
-
-              # Aggiungi nZoneStanza alla somma totale
-              st.session_state.sommaZone += arrotonda_valore(nZoneStanza)
-       
        # Determinazione delle soglie
        def calcola_soglia(valoreBTU, soglie):
               for soglia in soglie:
@@ -410,6 +434,51 @@ def sceltaMacchina(numeroPagina):
        BTUHaier = calcola_soglia(valoreBTU, soglieHaier)
        st.session_state.flagMacchinaMitsubishiNonDisponibile = BTUMitsubishi is None
        st.session_state.flagMacchinaHaierNonDisponibile = BTUHaier is None
+
+       # Funzione per arrotondare i valori
+       def arrotonda_valore(valore):
+              return max(1, math.ceil(valore))
+
+       # Funzione per calcolare le zone per stanza
+       def calcola_zone(portata_macchina, portata_diffusione):
+              st.session_state.sommaZone = 0
+              for nome, prodotto in risultati:
+                     var = (prodotto * 100) / mq_totali
+                     m3_elemento_diffusione_stanza = (var * int(portata_macchina)) / 100
+                     n_zone_stanza = m3_elemento_diffusione_stanza / portata_diffusione
+                     st.session_state.elencoNZonePerStanza.append((nome, arrotonda_valore(n_zone_stanza)))
+                     st.session_state.sommaZone += arrotonda_valore(n_zone_stanza)
+       
+       # Calcolo della portata della macchina
+       try:
+              portataMacchina = min(
+              int(config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata'].replace(" m3/h", "")),
+              int(config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata'].replace(" m3/h", ""))
+              )
+       except:
+              if BTUHaier == None and BTUMitsubishi == None:
+                     st.caption("Per il tuo impianto sono necessarie più di 7 zone")
+                     st.warning("[Configurazione solo su richiesta](https://www.widair.com/contattaci). Scrivici a mail: info@widair.com o chiamaci a cell. [+389 669 9635](tel:3896699635)")
+                     disabilitaAvantiSceltaMacchina = True
+                     return
+              elif BTUHaier == None and BTUMitsubishi != None:
+                     portataMacchina = int(config.macchinaMitsubishi[f'BTU{int(BTUMitsubishi)}']['portata'].replace(" m3/h", ""))
+              elif BTUMitsubishi == None and BTUHaier != None:
+                     portataMacchina = int(config.macchinaHaier[f'BTU{int(BTUHaier)}']['portata'].replace(" m3/h", ""))
+
+       # Calcola le zone con la portata iniziale
+       calcola_zone(portataMacchina, 350)
+
+       # Se la somma delle zone supera 7, ricalcola con una portata maggiore
+       if st.session_state.sommaZone > 7:
+              st.session_state.sommaZone = 0
+              st.session_state.elencoNZonePerStanza = []
+              st.session_state.costoTrasportoFlessibile = 60
+              st.session_state.diametroFlessibile = "200"
+              calcola_zone(portataMacchina, 600)
+       else:
+              st.session_state.costoTrasportoFlessibile = 35
+              st.session_state.diametroFlessibile = "150"
 
        # Funzione per visualizzare le informazioni delle macchine
        def mostra_macchina(macchina, BTU, flag_non_disponibile, checkbox_label):
@@ -594,24 +663,7 @@ def elementiDiffusione(numeroPagina):
               else: 
                      st.caption(f"**Per questa stanza è necessaria solo una bocchetta/diffusore**")
 
-              # Selezione dell'elemento di diffusione
-              if st.session_state.locazioneImpianto == "Abitazione":
-                     images = ["images/WBMA.png", "images/WFUTURE15.png", "images/DLAS40.png", "images/DLN40.png"]
-                     captions = ["Bocchetta a doppio filare di alette - WBMAV0 300x150mm", 
-                            "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm", 
-                            "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm", 
-                            "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie"]
-              else:  # Locale commerciale
-                     images = ["images/WBMA.png", "images/WLAF15.png", "images/WGUR.png", "images/WFUTURE15.png", 
-                            "images/WAQ1.png", "images/WBQE3Q.png", "images/DLAS40.png", "images/DLN40.png"]
-                     captions = ["Bocchetta a doppio filare di alette - WBMAV0 300x150mm", 
-                            "Bocchetta ad alette fisse - WLAF15 400x150mm", 
-                            "Bocchetta a microugelli orientabili su pannello - WGUR 1000x200mm", 
-                            "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm", 
-                            "Diffusore multidirezionale a 4 vie - WAQ1 225x225mm", 
-                            "Diffusore a flusso elicoidale - WBQE3Q 400x400", 
-                            "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm", 
-                            "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie"]
+              images, captions = config.options[st.session_state.locazioneImpianto][st.session_state.diametroFlessibile]
 
               with st.expander(f"**Seleziona Bocchetta / Diffusore per {st.session_state.elencoNomiStanze[i]}**", icon=":material/deployed_code:", expanded=True):
                      st.session_state.elDifTip = image_select(
@@ -623,46 +675,55 @@ def elementiDiffusione(numeroPagina):
                      key=f"{st.session_state.elencoNomiStanze[i]}{i+1}"
                      )
 
-                     #Richiesta unisci plenum
-                     #if int(st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1]) > 1:
-                     #       if st.session_state.locazioneImpianto == "Abitazione":
-                     #              if st.session_state.elDifTip in [2, 3]:
-                     #                     unisciDiffusori = st.toggle("Vuoi unire i due diffusori della stanza in un unico plenum?", value=False, key=f"unisciDiffusori{i}")
-                     #       else:
-                     #              if st.session_state.elDifTip in [6, 7]:
-                     #                     unisciDiffusori = st.toggle("Vuoi unire i due diffusori della stanza in un unico plenum?", value=False, key=f"unisciDiffusori{i}")
-
-                     if st.session_state.locazioneImpianto == "Abitazione":
-                            if st.session_state.elDifTip in [1, 2, 3]:
-                                   st.write("**Anteprima bocchetta installata**")
-                                   st.image(f"images/{['FUTURE (installata).png', 'DLAS40 (installata).png', 'DLN40 (installata).png'][st.session_state.elDifTip - 1]}")
-                            if st.session_state.elDifTip == 0:
-                                   st.session_state.elencoColori = ["images/RAL9010.png", "images/Alluminio Anodizzato.png"]
-                                   st.session_state.descrizioneColori = ["RAL9010", "Alluminio Anodizzato"]
-                            elif st.session_state.elDifTip in [1, 3]:
-                                   st.session_state.elencoColori = ["images/RAL9010.png", "images/RAL9016.png", "images/Alluminio Anodizzato.png"]
-                                   st.session_state.descrizioneColori = ["RAL9010", "RAL9016", "Alluminio Anodizzato"]
-                            else:
-                                   st.session_state.elencoColori = []
-                                   st.session_state.descrizioneColori = []
-                     else:
-                            if st.session_state.elDifTip in [3, 6, 7]:
-                                   st.write("**Anteprima bocchetta installata**")
+                     def set_colori(elDifTip, diametro):
+                            if st.session_state.locazioneImpianto == "Abitazione":
+                                   if elDifTip == 0:
+                                          return ["images/RAL9010.png", "images/Alluminio Anodizzato.png"], ["RAL9010", "Alluminio Anodizzato"]
+                                   elif elDifTip in [1, 3]:
+                                          return ["images/RAL9010.png", "images/RAL9016.png", "images/Alluminio Anodizzato.png"], ["RAL9010", "RAL9016", "Alluminio Anodizzato"]
+                                   else:
+                                          return [], []
+                            elif st.session_state.locazioneImpianto == "Locale commerciale":
+                                   # Gestire colori differenziando per diametro
+                                   if elDifTip == 0:
+                                          return ["images/RAL9010.png", "images/Alluminio Anodizzato.png"], ["RAL9010", "Alluminio Anodizzato"]
+                                   elif elDifTip in [1, 3]:
+                                          return ["images/RAL9010.png", "images/RAL9016.png", "images/Alluminio Anodizzato.png"], ["RAL9010", "RAL9016", "Alluminio Anodizzato"]
+                                   else:
+                                          return [], []
+                                   
+                     def mostra_anteprima(diametro, elDifTip):
+                            if st.session_state.locazioneImpianto == "Abitazione":
                                    immagini = {
+                                          "150": {
+                                          1: "images/FUTURE (installata).png",
+                                          2: "images/DLAS40 (installata).png",
+                                          3: "images/DLN40 (installata).png"
+                                          },
+                                          "200": {
+                                          1: "images/FUTURE (installata).png",
+                                          3: "images/DLN40 (installata).png"
+                                          }
+                                   }
+                            elif st.session_state.locazioneImpianto == "Locale commerciale":
+                                   immagini = {
+                                          "150": {
                                           3: "images/FUTURE (installata).png",
                                           6: "images/DLAS40 (installata).png",
                                           7: "images/DLN40 (installata).png"
+                                          },
+                                          "200": {
+                                          3: "images/FUTURE (installata).png",
+                                          7: "images/DLN40 (installata).png"
+                                          }
                                    }
-                                   st.image(immagini[st.session_state.elDifTip])
-                            if st.session_state.elDifTip in [0, 1, 2]:
-                                   st.session_state.elencoColori = ["images/RAL9010.png", "images/Alluminio Anodizzato.png"]
-                                   st.session_state.descrizioneColori = ["RAL9010", "Alluminio Anodizzato"]
-                            elif st.session_state.elDifTip in [3, 4, 7]:
-                                   st.session_state.elencoColori = ["images/RAL9010.png", "images/RAL9016.png", "images/Alluminio Anodizzato.png"]
-                                   st.session_state.descrizioneColori = ["RAL9010", "RAL9016", "Alluminio Anodizzato"]
-                            else:
-                                   st.session_state.elencoColori = []
-                                   st.session_state.descrizioneColori = []
+                            
+                            if diametro in immagini and elDifTip in immagini[diametro]:
+                                   st.write("**Anteprima elemento diffusione installato**")
+                                   st.image(immagini[diametro][elDifTip])
+
+                     mostra_anteprima(st.session_state.diametroFlessibile, st.session_state.elDifTip)
+                     st.session_state.elencoColori, st.session_state.descrizioneColori = set_colori(st.session_state.elDifTip, st.session_state.diametroFlessibile)
 
                      if st.session_state.elencoColori:  # Solo se ci sono colori disponibili
                             st.session_state.elDifCol = image_select(
@@ -828,21 +889,25 @@ def distanze(numeroPagina):
                                    distanza_float = float(distanza)
                                    # Se la stanza ha più elementi di diffusione, moltiplico la distanza data in input dall'utente per il numero di zone
                                    if st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1] != 1:
-                                          sommaDistanza += distanza_float * float(st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1]) + 2
+                                          sommaDistanza += distanza_float * float(st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][i][1])
                                    else:
-                                          sommaDistanza += distanza_float + 2
+                                          sommaDistanza += distanza_float
                                    if distanza_float > 10:
                                           flagSuRichiesta = True
                                    elif distanza_float > 5:
                                           st.session_state.flagSanificante = True
                      else:
                             flagEmpty = True
+       sommaDistanza += st.session_state.sommaZone * 2
                                           
        if flagSuRichiesta:
               st.warning("[Configurazione solo su richiesta](https://www.widair.com/contattaci). Scrivici a mail: info@widair.com o chiamaci a cell. [+389 669 9635](tel:3896699635)")
        else:
               scatoleFlessibile = int(math.ceil(sommaDistanza / 10) * 10 / 10)
-              prezzo_key = 'Flessibile Ø 150 mm sanificante' if st.session_state.flagSanificante else 'Flessibile Ø 150 mm isolato'
+              if st.session_state.diametroFlessibile == "150":
+                     prezzo_key = 'Flessibile Ø 150 mm sanificante' if st.session_state.flagSanificante else 'Flessibile Ø 150 mm isolato'
+              elif st.session_state.diametroFlessibile == "200":
+                     prezzo_key = 'Flessibile Ø 200 mm sanificante' if st.session_state.flagSanificante else 'Flessibile Ø 200 mm isolato'
               st.session_state.scatoleFlessibile = scatoleFlessibile
               st.session_state.prezzoFlessibile = scatoleFlessibile * float(config.listino_prezzi_accessori[prezzo_key]['prezzo'])
 
@@ -1028,7 +1093,6 @@ def riepilogo():
               st.session_state.riepilogo_ordine += "Impianto di raffreddamento "
        st.divider()
 
-
        # Luogo Impianto
        st.subheader("Luogo impianto")
        st.caption(st.session_state.locazioneImpianto)
@@ -1038,23 +1102,44 @@ def riepilogo():
        # Elementi di diffusione per stanza
        st.subheader("Stanze ed elementi diffusione")
        if st.session_state.locazioneImpianto == "Abitazione":
-              associazione_nomi = {
-              0: 'Bocchetta a doppio filare di alette - WBMAV0 300x150mm',
-              1: 'Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm',
-              2: 'Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm',
-              3: 'Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie',
-              }
+              if st.session_state.diametroFlessibile == "150":
+                     associazione_nomi = {
+                     0: 'Bocchetta a doppio filare di alette - WBMAV0 300x150mm',
+                     1: 'Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm',
+                     2: 'Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm',
+                     3: 'Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie',
+                     }
+              elif st.session_state.diametroFlessibile == "200":
+                     associazione_nomi = {
+                     0: 'Bocchetta a doppio filare di alette - WBMAV0 300x200mm',
+                     1: 'Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 500x200mm',
+                     2: 'Diffusore circolare con frontale chiuso - WLCA 200',
+                     3: 'Diffusore lineare a feritoie - WDLN40 L.800mm 3 Feritoie',
+                     4: 'Diffusore quadrato con frontale chiuso - WLKA 200'
+                     }
        else:
-              associazione_nomi = {
-              0: 'Bocchetta a doppio filare di alette - WBMAV0 300x150mm',
-              1: 'Bocchetta ad alette fisse - WLAF15 400x150mm',
-              2: 'Bocchetta a microugelli orientabili su pannello - WGUR 1000x200mm',
-              3: 'Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm',
-              4: 'Diffusore multidirezionale a 4 vie - WAQ1 225x225mm',
-              5: 'Diffusore a flusso elicoidale - WBQE3Q 400x400',
-              6: 'Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm',
-              7: 'Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie'
-              }
+              if st.session_state.diametroFlessibile == "150":
+                     associazione_nomi = {
+                     0: 'Bocchetta a doppio filare di alette - WBMAV0 300x150mm',
+                     1: 'Bocchetta ad alette fisse - WLAF15 400x150mm',
+                     2: 'Bocchetta a microugelli orientabili su pannello - WGUR 1000x200mm',
+                     3: 'Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm',
+                     4: 'Diffusore multidirezionale a 4 vie - WAQ1 225x225mm',
+                     5: 'Diffusore a flusso elicoidale - WBQE3Q 400x400mm',
+                     6: 'Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm',
+                     7: 'Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie'
+                     }
+              elif st.session_state.diametroFlessibile == "200":
+                     associazione_nomi = {
+                     0: 'Bocchetta a doppio filare di alette - WBMAV0 300x150mm',
+                     1: 'Bocchetta ad alette fisse - WLAF15 500x200mm',
+                     2: 'Diffusore circolare con frontale chiuso - WLCA 200',
+                     3: 'Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 500x200mm',
+                     4: 'Diffusore multidirezionale a 4 vie - WAQ1 300x300mm',
+                     5: 'Diffusore a flusso elicoidale - WBQE3Q 500x500mm',
+                     6: 'Diffusore quadrato con frontale chiuso - WLKA 200',
+                     7: 'Diffusore lineare a feritoie - WDLN40 L.800mm 3 Feritoie'
+                     }
        
        associazione_colori = {
               0: 'RAL 9010 - Panna',
@@ -1065,8 +1150,13 @@ def riepilogo():
        def ripetiElemento(nome_associato, colore_associato, numeroElementi):
               for i in range(numeroElementi):
                      st.image(f"images/{nome_associato}.png")
-                     st.session_state.prezzoElementiDiffusione += config.listino_prezzi_accessori[nome_associato]['prezzo'] + config.listino_prezzi_accessori[nome_associato]['prezzoPlenum']
-                     st.caption(f"{nome_associato}, {colore_associato}")
+                     if nome_associato == "Diffusore circolare con frontale chiuso - WLCA 200" or nome_associato == "Diffusore quadrato con frontale chiuso - WLKA 200":
+                            st.session_state.prezzoElementiDiffusione += config.listino_prezzi_accessori[nome_associato]['prezzo']
+                            st.caption(f"{nome_associato}, {colore_associato}")
+                     else:
+                            st.session_state.prezzoElementiDiffusione += config.listino_prezzi_accessori[nome_associato]['prezzo'] + config.listino_prezzi_accessori[nome_associato]['prezzoPlenum']
+                            st.caption(f"{nome_associato}, {colore_associato}")
+                     
                      st.session_state.riepilogo_ordine += f"{nome_associato}, {colore_associato} "
 
                      if st.session_state.sceltaControlloTemperatura == 0:
@@ -1080,10 +1170,10 @@ def riepilogo():
 
                      if flagSerranda == True:
                             st.caption("Serranda di regolazione inclusa.")
-                            st.session_state.riepilogo_ordine += "(serranda di regolazione inclusa)"
-                     st.caption(f"Plenum in pannello preisolato incluso con 1 attacchi Ø 150")
-                     st.session_state.riepilogo_ordine += " - Plenum in pannello preisolato con 1 attacchi Ø 150. "
-
+                            st.session_state.riepilogo_ordine += "(serranda di regolazione inclusa). "
+                     if nome_associato != "Diffusore circolare con frontale chiuso - WLCA 200" and nome_associato != "Diffusore quadrato con frontale chiuso - WLKA 200":
+                            st.caption(f"Plenum in pannello preisolato incluso con 1 attacchi Ø {st.session_state.diametroFlessibile}")
+                            st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con 1 attacchi Ø {st.session_state.diametroFlessibile}. "
 
        # Itera sulla lista di dati
        if 'prezzoElementiDiffusione' not in st.session_state:
@@ -1116,7 +1206,7 @@ def riepilogo():
                      # Aggiungo cavalletti, tappi e eventuali kit di continuità
                      if nome_associato == "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm":
                             st.session_state.prezzoElementiDiffusione += (config.listino_prezzi_accessori['Cavalletti']*2) + config.listino_prezzi_accessori['Tappi di chiusura']
-                            st.caption("Cavaletti e tappi inclusi nel prezzo")
+                            st.caption("Tappi inclusi nel prezzo")
                             st.session_state.riepilogo_ordine += " - Cavaletti e tappi inclusi"
                      if nome_associato == "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie":
                             st.session_state.prezzoElementiDiffusione += (config.listino_prezzi_accessori['Cavalletti']*2)
@@ -1124,20 +1214,21 @@ def riepilogo():
                             st.session_state.riepilogo_ordine += " - Cavaletti inclusi)"
                      if flagSerranda == True:
                             st.caption("Serranda di regolazione inclusa.")
-                            st.session_state.riepilogo_ordine += "(serranda di regolazione inclusa)"
-
+                            st.session_state.riepilogo_ordine += "(serranda di regolazione inclusa). "
                      
                      # Mostro per il primo elemento
                      if st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1] != 1:
-                            st.caption(f"Plenum in pannello preisolato incluso con 1 attacchi Ø 150")
-                            st.session_state.riepilogo_ordine += " - Plenum in pannello preisolato con 1 attacchi Ø 150. "
+                            if nome_associato != "Diffusore circolare con frontale chiuso - WLCA 200" and nome_associato != "Diffusore quadrato con frontale chiuso - WLKA 200":
+                                   st.caption(f"Plenum in pannello preisolato incluso con 1 attacchi Ø {st.session_state.diametroFlessibile}")
+                                   st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con 1 attacchi Ø {st.session_state.diametroFlessibile}. "
                      
                      if st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1] >= 2:
                             numeroElementi = st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]-1
                             ripetiElemento(nome_associato, colore_associato, numeroElementi)
                      else:
-                            st.caption(f"Plenum in pannello preisolato incluso con {st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]} attacchi Ø 150")
-                            st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con {st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]} attacchi Ø 150. "
+                            if nome_associato != "Diffusore circolare con frontale chiuso - WLCA 200" and nome_associato != "Diffusore quadrato con frontale chiuso - WLKA 200":
+                                   st.caption(f"Plenum in pannello preisolato incluso con {st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]} attacchi Ø {st.session_state.diametroFlessibile}")
+                                   st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con {st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]} attacchi Ø {st.session_state.diametroFlessibile}. "
                      contatore += 1
        st.divider()
 
@@ -1176,18 +1267,34 @@ def riepilogo():
        with col2:
               if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
                      st.caption(f"{config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['descrizione']}")
-                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['descrizione']} (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø 150). "
+                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['descrizione']} (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø {st.session_state.diametroFlessibile}). "
+                     if st.session_state.sceltaControlloTemperatura == 1:
+                            st.session_state.riepilogo_ordine += "Attacchi motorizzati. "
               else:
                      st.caption(f"{config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}")
-                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}. (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø 150). "
+                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}. (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø {st.session_state.diametroFlessibile}). "
+                     if st.session_state.sceltaControlloTemperatura == 1:
+                            st.session_state.riepilogo_ordine += "Attacchi motorizzati. "
+              
+
+              if st.session_state.diametroFlessibile == '150':
+                     if st.session_state.sceltaControlloTemperatura == 1:
+                            prezzoCollarini = 78.00
+                     else:
+                            prezzoCollarini = 3.0
+              elif st.session_state.diametroFlessibile == '200':
+                     if st.session_state.sceltaControlloTemperatura == 1:
+                            prezzoCollarini = 79.50
+                     else:
+                            prezzoCollarini = 3.35
 
               if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
                      prezzoMacchina = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzo'] + 156.80
-                     st.session_state.prezzoPlenumMacchina = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzoPlenumMacchina'] + (st.session_state.sommaZone * 3)
+                     st.session_state.prezzoPlenumMacchina = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzoPlenumMacchina'] + (st.session_state.sommaZone * prezzoCollarini)
                      st.write(f":green[**+ {format(prezzoMacchina, '.2f')}€**]")
               else:
                      prezzoMacchina = config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['prezzo'] + 100
-                     st.session_state.prezzoPlenumMacchina = config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['prezzoPlenumMacchina'] + (st.session_state.sommaZone * 3)
+                     st.session_state.prezzoPlenumMacchina = config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['prezzoPlenumMacchina'] + (st.session_state.sommaZone * prezzoCollarini)
                      st.write(f":green[**+ {format(prezzoMacchina, '.2f')}€**]")
        
        #Comandi
@@ -1248,9 +1355,9 @@ def riepilogo():
                      labelFlessibile = "tubazione semirigida sanificante"
               else:
                      labelFlessibile = "tubazione flessibile isolata"
-              st.caption(f"Per il tuo impianto sono necessari {st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø 150")
+              st.caption(f"Per il tuo impianto sono necessari {st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø {st.session_state.diametroFlessibile}")
               st.session_state.riepilogo_ordine += f"{st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø 150. "
-              #st.write(f":green[**+ {format(st.session_state.prezzoFlessibile, '.2f')}€**]")
+              # st.write(f":green[**+ {format(st.session_state.prezzoFlessibile, '.2f')}€**]")
               st.write()
        st.divider()
 
@@ -1287,7 +1394,7 @@ def riepilogo():
                                    st.session_state.prezzoCopriclima = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzoCopriclima'] + 50
                             else:
                                    st.session_state.prezzoCopriclima = config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['prezzoCopriclima'] + 50
-                            st.write(f":green[**+ {format(st.session_state.prezzoCopriclima, '.2f')}€**]")
+                            #st.write(f":green[**+ {format(st.session_state.prezzoCopriclima, '.2f')}€**]")
 
               if st.session_state.prezzoIonizzatore != 0:
                      st.write(f"**Ionizzatore**")
@@ -1300,19 +1407,27 @@ def riepilogo():
                             #st.write(f":green[**+ {format(st.session_state.prezzoIonizzatore, '.2f')}€**]")
               st.divider()
        
+
+       
        # Accessori in dotazione
+       if 'prezzoAccessori' not in st.session_state:
+              st.session_state.prezzoAccessori = 0
+       st.session_state.prezzoAccessori = 0
        st.subheader("Accessori in dotazione")
-       st.session_state.riepilogo_ordine += "Accessori in dotazione: "
-       st.caption(f"{st.session_state.sommaZone*2} fascette stringitubo. ")
-       st.session_state.riepilogo_ordine += f"{st.session_state.sommaZone*2} fascette stringitubo. "
+       st.session_state.riepilogo_ordine += f"Accessori in dotazione: {st.session_state.sommaZone*2} fascette stringitubo, {st.session_state.numeroBarraFilettata} barre filettate, 15 dadi flangiati M8, 15 viti autoforanti 4,2x16mm, 6 Tasselli in ottone."
+       st.caption(f"{st.session_state.sommaZone*2} fascette stringitubo")
+       if st.session_state.diametroFlessibile == '150':
+              st.session_state.prezzoAccessori += float(st.session_state.sommaZone * 2) * 0.84
+       elif st.session_state.diametroFlessibile == '200':
+              st.session_state.prezzoAccessori += float(st.session_state.sommaZone * 2) * 1.01
        st.caption(f"{st.session_state.numeroBarraFilettata} barre filettate")
-       st.session_state.riepilogo_ordine += f"{st.session_state.numeroBarraFilettata} barre filettate. "
+       st.session_state.prezzoAccessori += float(st.session_state.prezzoBarraFilettata)
        st.caption("15 dadi flangiati M8")
-       st.session_state.riepilogo_ordine += "15 dadi flangiati M8. "
+       st.session_state.prezzoAccessori += 2.00
        st.caption("15 viti autoforanti 4,2x16mm")
-       st.session_state.riepilogo_ordine += "15 viti autoforanti 4,2x16mm. "
+       st.session_state.prezzoAccessori += 0.40
        st.caption("6 Tasselli in ottone")
-       st.session_state.riepilogo_ordine += "6 Tasselli in ottone. "
+       st.session_state.prezzoAccessori += 3.00
        st.divider()
 
        # Download Libretto Istruzioni
@@ -1333,7 +1448,6 @@ def riepilogo():
        st.divider()
 
        st.subheader("**Preferenze di pagamento**")
-
        pagamentoBonificoBancario = st.radio("**Come vuoi pagare?**", ['Carta di credito', 'Bonifico Bancario'], horizontal=True)
        if pagamentoBonificoBancario == 'Bonifico Bancario':
               Nome = st.text_input('Inserisci il tuo nome')
@@ -1345,11 +1459,10 @@ def riepilogo():
               NumeroDiTelefono = ""
        st.divider()
 
-       # 55€ di spedizione + 35€ per ogni scatola di sanificante
+       # 55€ di spedizione + 35€ per ogni scatola di sanificante da 150 (60€ per ogni scatola di sanificante da 200)
        st.subheader("Totale Ordine")
        st.caption("Spedizione inclusa in tutta italia (isole maggiori comprese es. Sicilia, Sardegna)")
-       # 0.40€ - Viti Autoforanti
-       prezzoImponibileIniziale = float(st.session_state.prezzoPlenumMacchina) + float(st.session_state.prezzoBarraFilettata) + float(st.session_state.prezzoSerrandaBypass) + float(st.session_state.prezzoElementiDiffusione) + float(st.session_state.prezzoControlloTemperatura) + float(prezzoMacchina) + float(st.session_state.prezzoComandoManualeMitsubishi) + float(st.session_state.prezzoWiFiComandoManualeMitsubishi) + float(st.session_state.prezzoGriglia) + float(config.listino_prezzi_accessori[f'Griglia di ripresa {st.session_state.dimensioneGriglia} mm']['prezzoControtelaio']) + float(st.session_state.prezzoFlessibile) + float(st.session_state.scatoleFlessibile*35) + float(st.session_state.prezzoFinaleInstallazione) + float(st.session_state.prezzoCopriclima) + float(st.session_state.prezzoIonizzatore + 0.40) + 55
+       prezzoImponibileIniziale = float(st.session_state.prezzoPlenumMacchina) + float(st.session_state.prezzoSerrandaBypass) + float(st.session_state.prezzoElementiDiffusione*1.10) + float(st.session_state.prezzoControlloTemperatura) + float(prezzoMacchina) + float(st.session_state.prezzoComandoManualeMitsubishi) + float(st.session_state.prezzoWiFiComandoManualeMitsubishi) + float(st.session_state.prezzoGriglia) + float(config.listino_prezzi_accessori[f'Griglia di ripresa {st.session_state.dimensioneGriglia} mm']['prezzoControtelaio']) + float(st.session_state.prezzoFlessibile) + float(st.session_state.scatoleFlessibile*float(st.session_state.costoTrasportoFlessibile)) + float(st.session_state.prezzoFinaleInstallazione) + float(st.session_state.prezzoCopriclima) + float(st.session_state.prezzoIonizzatore) + float(st.session_state.prezzoAccessori) + 55
        prezzoConIva = float(prezzoImponibileIniziale * 1.22)
        commissione = float((prezzoConIva * 5)/100)
        prezzoImponibileFinale = float(prezzoImponibileIniziale + commissione)
@@ -1390,7 +1503,7 @@ def riepilogo():
               else:
                      stripe.api_key = st.secrets["stripeAPI_test"]
                      session = stripe.checkout.Session.create(
-                            payment_method_types=['card','klarna','paypal'],
+                            payment_method_types=['card','paypal'],
                             line_items=[{
                                    'price_data': {
                                    'currency': 'eur',
@@ -1431,6 +1544,7 @@ def riepilogo():
                             )
                      st.link_button("**CONFERMA E PAGA**", session.url, type="primary", use_container_width=True)
 
+caricamentoPagina = st.Page(caricamento, title = "Caricamento")
 tipologiaImpiantoPagina = st.Page(tipologiaImpianto, title = "Tipologia Impianto")
 funzioneImpiantoPagina = st.Page(funzioneImpianto, title = "Funzione Impianto")
 luogoImpiantoPagina = st.Page(luogoImpianto, title = "Luogo Impianto")
@@ -1448,8 +1562,10 @@ optionalPagina = st.Page(optional, title = "Optional")
 riepilogoPagina = st.Page(riepilogo, title = "Riepilogo")
 
 if 'page' not in st.session_state:
-    st.session_state.page = "Tipologia Impianto"
+    st.session_state.page = "Caricamento"
 
+if st.session_state.page == "Caricamento":
+    caricamento()
 if st.session_state.page == "Tipologia Impianto":
     tipologiaImpianto(1)
 elif st.session_state.page == "Funzione Impianto":

@@ -116,7 +116,7 @@ macchinaHaier = {
         "prezzo": 2735.70, #Aggiunto prezzo comando a filo YRE17A (56.80€) e prezzo spedizione (100.00€)
         "prezzoPlenumMacchina": 92.90,
         "prezzoCopriclima": 474.60,
-        "portata": "2250 m3/h"
+        "portata": "2750 m3/h"
     }
 }
 
@@ -257,7 +257,7 @@ macchinaMitsubishi = {
         "prezzoCopriclima": 415.80,
         "portata": "2760 m3/h"
     },
-        "BTU68000": {
+    "BTU68000": {
         "immagine": "images/PEA-M 68-85.png",
         "descrizione": "Mitsubishi - Unità interna mod. PEA-M200LA2/ Unità esterna mod. PUZ-M200VKA2",
         "Raffreddamento - classe energetica": "A",
@@ -274,7 +274,7 @@ macchinaMitsubishi = {
         "prezzoCopriclima": 474.60,
         "portata": "2760 m3/h"
     },
-        "BTU85000": {
+    "BTU85000": {
         "immagine": "images/PEA-M 68-85.png",
         "descrizione": "Mitsubishi - Unità interna mod. PEA-M250LA2/ Unità esterna mod. PUZ-M250VKA2",
         "Raffreddamento - classe energetica": "A",
@@ -294,46 +294,89 @@ macchinaMitsubishi = {
 }
 
 listino_prezzi_accessori = {
-    "Sportello d'ispezione": {"prezzo": 16.10, "posizioneImmagine": "" , "info":""},
-    "Serranda By-pass": {"prezzo": 35.38, "posizioneImmagine": "images/Serranda By-pass.png" , "info":"Mantiene la pressione statica nella rete dei condotti all'interno dei limiti prestabiliti, assicurando il corretto funzionamento del sistema di climatizzazione a condotti."},
-    "Ionizzatore": {"prezzo": 330.23, "posizioneImmagine": "" , "info":""},
+    "Sportello d'ispezione": {"prezzo": 25.00, "posizioneImmagine": "" , "info":""},
+    "Serranda By-pass": {"prezzo": 36.00, "posizioneImmagine": "images/Serranda By-pass.png" , "info":"Mantiene la pressione statica nella rete dei condotti all'interno dei limiti prestabiliti, assicurando il corretto funzionamento del sistema di climatizzazione a condotti."},
+    "Ionizzatore": {"prezzo": 350.00, "posizioneImmagine": "" , "info":""},
     "Flessibile Ø 150 mm isolato": {"prezzo": 46.00, "info":"Prezzo 10m"},
     "Flessibile Ø 150 mm sanificante": {"prezzo": 93.30, "info":"Prezzo 10m"},
-    "Controtelaio":{"prezzo": 30.00, "info":""},
+    "Flessibile Ø 200 mm isolato": {"prezzo": 61.00, "info":"Prezzo 10m"},
+    "Flessibile Ø 200 mm sanificante": {"prezzo": 128.00, "info":"Prezzo 10m"},
     "Griglia di ripresa 600x400 mm": {"prezzo": 62.73, "prezzoControtelaio": 13.00, "posizioneImmagine": "", "info":""},
     "Griglia di ripresa 800x400 mm": {"prezzo": 76.66, "prezzoControtelaio": 12.00, "posizioneImmagine": "", "info":""},
     "Griglia di ripresa 1000x400 mm": {"prezzo": 87.12, "prezzoControtelaio": 14.00, "posizioneImmagine": "", "info":""},
     "Griglia di ripresa 1000x600 mm": {"prezzo": 113.85, "prezzoControtelaio": 16.00, "posizioneImmagine": "", "info":""},
-    "Fascette stringitubo 175":{"prezzo": 0.84, "info":""},
-    "Fascette stringitubo 225":{"prezzo": 1.01, "info":""},
-    "Vite autoforante": {"prezzo":0.40, "info":"Vite autoforante 4.2 x 16mm n.8 - 25.09€ per 1000pz"},
-    "Dadi": {"prezzo":2.00, "info":""},
-    "Tasselli": {"prezzo":3.00, "info":"6 Tasselli"},
     "Barra filettata": {"prezzo":1.15, "info":"4 per sistema manuale, 6 per sistema motorizzato"},
-    "Bocchetta a doppio filare di alette - WBMAV0 300x150mm": {"prezzo": 16.22, "prezzoPlenum":37.54, "prezzoSerranda": 7.50, "info":"Bocchetta in alluminio con alette frontali parallele al lato corto, posteriori parallele al lato lungo. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Bocchetta a doppio filare di alette - WBMAV0 300x150mm": {"prezzo": 14.10, "prezzoPlenum":37.54, "prezzoSerranda": 7.50, "info":"Bocchetta in alluminio con alette frontali parallele al lato corto, posteriori parallele al lato lungo. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Bocchetta a doppio filare di alette - WBMAV0 300x200mm": {"prezzo": 19.83, "prezzoPlenum":39.22, "prezzoSerranda": 9.60, "info":"Bocchetta in alluminio con alette frontali parallele al lato corto, posteriori parallele al lato lungo. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
     "Bocchetta ad alette fisse - WLAF15 400x150mm": {"prezzo": 20.99, "prezzoPlenum":40.56, "prezzoSerranda": 8.80, "info":"Bocchetta a barre orizzontali fisse con deflessione a 15° con pacco barre estreaibile. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Bocchetta ad alette fisse - WLAF15 500x200mm": {"prezzo": 33.77, "prezzoPlenum":40.00, "prezzoSerranda": 21.78,"info":"Bocchetta a barre orizzontali fisse con deflessione a 15° con pacco barre estreaibile. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
     "Bocchetta a microugelli orientabili su pannello - WGUR 1000x200mm": {"prezzo": 231.87, "prezzoPlenum":61.12,"prezzoSerranda": 19.00, "info":"Bocchetta verniciata RAL9010 con piastra in acciaio, cornice in alluminio e ugelli in nylon bianco. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
     "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm": {"prezzo": 54.02, "prezzoPlenum":40.56, "prezzoSerranda": 16.50,"info":"Bocchetta a barre fisse con deflessione 15°, telaio in alluminio naturale e parte asportabile a barre fisse in alluminio. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 500x200mm": {"prezzo": 64.47, "prezzoPlenum":45.48, "prezzoSerranda": 23.20,"info":"Bocchetta a barre fisse con deflessione 15°, telaio in alluminio naturale e parte asportabile a barre fisse in alluminio. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
     "Diffusore multidirezionale a 4 vie - WAQ1 225x225mm": {"prezzo": 17.67, "prezzoPlenum":37.67, "prezzoSerranda": 6.99, "info":"Diffusore in alluminio con parte centrale asportabile. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Diffusore multidirezionale a 4 vie - WAQ1 300x300mm": {"prezzo": 25.13, "prezzoPlenum":42.58, "prezzoSerranda": 11.50, "info":"Diffusore in alluminio con parte centrale asportabile. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
     "Diffusore a flusso elicoidale - WBQE3Q 400x400mm": {"prezzo": 24.48,"prezzoPlenum":49.53, "prezzoSerranda": 9.45, "prezzoEqualizzatore": 6.08, "prezzoPonteFissaggio": 6.02, "info":"Diffusore in acciaio verniciato bianco RAL9010 con getti regolabili e deflettore in polipropilene nero RAL9005. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
+    "Diffusore a flusso elicoidale - WBQE3Q 500x500mm": {"prezzo": 30.60,"prezzoPlenum":56.94, "prezzoSerranda": 9.65, "prezzoEqualizzatore": 10.00, "prezzoPonteFissaggio": 6.02, "info":"Diffusore in acciaio verniciato bianco RAL9010 con getti regolabili e deflettore in polipropilene nero RAL9005. Completa di plenum in pannello preisolato spessore 12 mm e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura."},
     "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm": {"prezzo": 93.04, "prezzoPlenum":59.56, "info":"**Diffusore lineare a scomparsa con serranda e deflettore. Completa di plenum in pannello preisolato spessore 12 mm e tappi di chiusura**. NB: Se desideri giuntare più diffusori lineari considera solo tappi di chiusura alle estremità dei diffusori e kit di continuità come da specifiche seguenti. Ricordati quindi di aggiungere o togliere i tappi e i kit in base alle tue esigenze."},
-    "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie": {"prezzo": 45.13, "prezzoPlenum":53.25, "info":"Diffusore a feritoie in alluminio estruso con deflettore a goccia nero RAL9005 in polipropilene e serranda a scorrimento. Completa di plenum in pannello preisolato spessore 12 mm e cavalletti di montaggio (2 pezzi)"},
+    "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie": {"prezzo": 38.33, "prezzoPlenum":53.25, "info":"Diffusore a feritoie in alluminio estruso con deflettore a goccia nero RAL9005 in polipropilene e serranda a scorrimento. Completa di plenum in pannello preisolato spessore 12 mm e cavalletti di montaggio (2 pezzi)"},
+    "Diffusore lineare a feritoie - WDLN40 L.800mm 3 Feritoie": {"prezzo": 50.66, "prezzoPlenum":57.99, "info":"Diffusore a feritoie in alluminio estruso con deflettore a goccia nero RAL9005 in polipropilene e serranda a scorrimento. Completa di plenum in pannello preisolato spessore 12 mm e cavalletti di montaggio (2 pezzi)"},
+    "Diffusore circolare con frontale chiuso - WLCA 200": {"prezzo": 87.72,"prezzoPlenum": 0.00, "prezzoSerranda": 19.30, "info":"Diffusore circolare a soffitto con frontale chiuso. Completo di plenum in pannello preisolato spessore 12 mm, staffe di montaggio e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura. Questo diffusore non necessita di un plenum porta-diffusore, è sufficiente collegare il tubo flessibile direttamente al collarino del diffusore."},
+    "Diffusore quadrato con frontale chiuso - WLKA 200": {"prezzo": 97.17, "prezzoPlenum": 0.00, "prezzoSerranda": 19.30, "info":"Diffusore circolare a soffitto con frontale chiuso. Completo di plenum in pannello preisolato spessore 12 mm, staffe di montaggio e nel caso in cui non è presente alcun sistema motorizzato selezionato, completo anche di serranda di taratura. Questo diffusore non necessita di un plenum porta-diffusore, è sufficiente collegare il tubo flessibile direttamente al collarino del diffusore."},
     "Sistema Motorizzato Cablato": {
-           "Centralina":{"prezzo": 283.86, "info":""},
-           "Cronotermostato":{"prezzo": 89.07, "info":"Cronotermostato digitale filare con programmazione settimanale a 2 livelli: Comfort/ECO. Consente un’impostazione adattata ad ogni impianto, il blocco delle funzionalità, la limitazione delle temperature di setup."},
-           "Interfaccia di comunicazione":{"prezzo": 248.29, "info":""}, 
+           "Centralina":{"prezzo": 245.00, "info":""},
+           "Cronotermostato":{"prezzo": 86.25, "info":"Cronotermostato digitale filare con programmazione settimanale a 2 livelli: Comfort/ECO. Consente un’impostazione adattata ad ogni impianto, il blocco delle funzionalità, la limitazione delle temperature di setup."},
+           "Interfaccia di comunicazione":{"prezzo": 324.00, "info":""}, 
            "Scatola stagna":{"prezzo": 50, "info":""},
-           "Cablatura sistema":{"prezzo": 100, "info":""}
+           "Cablatura sistema":{"prezzo": 150, "info":""}
     },
     "Sistema Motorizzato Wireless": {
-           "Centralina":{"prezzo": 321.62, "info":""},
-           "Cronotermostato":{"prezzo": 124.18, "info":"Termostato digitale con schermo e-ink a basso consumo, comunicazione radio bidirezionale, funziona in abbinamento alle centrali del sistema Zoning."},
-           "Interfaccia di comunicazione":{"prezzo": 248.29, "info":""},
+           "Centralina":{"prezzo": 285.00, "info":""},
+           "Cronotermostato":{"prezzo": 121.00, "info":"Termostato digitale con schermo e-ink a basso consumo, comunicazione radio bidirezionale, funziona in abbinamento alle centrali del sistema Zoning."},
+           "Interfaccia di comunicazione":{"prezzo": 324.00, "info":""},
            "Scatola stagna":{"prezzo": 50, "info":""},
-           "Cablatura sistema":{"prezzo": 100, "info":""}
+           "Cablatura sistema":{"prezzo": 150, "info":""}
     },
-    "Netbox":{"prezzo": 250.73, "info":"Consente il controllo da remoto della temperatura degli ambienti tramite qualsiasi dispositivo mobile (smartphone, tablet) o fisso (PC) grazie alla webapp: Zoening 2.0 (Disponibile in App Store e Google Play Store)."},
+    "Netbox":{"prezzo": 245.00, "info":"Consente il controllo da remoto della temperatura degli ambienti tramite qualsiasi dispositivo mobile (smartphone, tablet) o fisso (PC) grazie alla webapp: Zoening 2.0 (Disponibile in App Store e Google Play Store)."},
     "Kit Continuità": 2.84,
     "Tappi di chiusura": 10.22,
-    "Cavalletti": 1.00
+    "Cavalletti": 3.40
+}
+
+# Mappatura delle immagini e delle didascalie
+options = {
+    "Abitazione": {
+            "150": (["images/WBMA.png", "images/WFUTURE15.png", "images/DLAS40.png", "images/DLN40.png"],
+                    ["Bocchetta a doppio filare di alette - WBMAV0 300x150mm", 
+                    "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm", 
+                    "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm", 
+                    "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie"]),
+            "200": (["images/WBMA.png", "images/WFUTURE15.png", "images/LCA200.png", "images/DLN40.png", "images/LKA200.png"],
+                    ["Bocchetta a doppio filare di alette - WBMAV0 300x200mm", 
+                    "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 500x200mm", 
+                    "Diffusore circolare con frontale chiuso - WLCA 200", 
+                    "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie",
+                    "Diffusore quadrato con frontale chiuso - WLKA 200"])
+       },
+    "Locale commerciale": {
+            "150": (["images/WBMA.png", "images/WLAF15.png", "images/WGUR.png", "images/WFUTURE15.png", 
+                    "images/WAQ1.png", "images/WBQE3Q.png", "images/DLAS40.png", "images/DLN40.png"],
+                    ["Bocchetta a doppio filare di alette - WBMAV0 300x150mm", 
+                    "Bocchetta ad alette fisse - WLAF15 400x150mm", 
+                    "Bocchetta a microugelli orientabili su pannello - WGUR 1000x200mm", 
+                    "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 400x150mm", 
+                    "Diffusore multidirezionale a 4 vie - WAQ1 225x225mm", 
+                    "Diffusore a flusso elicoidale - WBQE3Q 400x400mm", 
+                    "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm", 
+                    "Diffusore lineare a feritoie - WDLN40 L.800mm 2 Feritoie"]),
+            "200": (["images/WBMA.png", "images/WLAF15.png", "images/LCA200.png", "images/WFUTURE15.png", 
+                    "images/WAQ1.png", "images/WBQE3Q.png", "images/LKA200.png", "images/DLN40.png"],
+                    ["Bocchetta a doppio filare di alette - WBMAV0 300x200mm", 
+                    "Bocchetta ad alette fisse - WLAF15 500x200mm", 
+                    "Diffusore circolare con frontale chiuso - WLCA 200", 
+                    "Bocchetta a barre fisse con telaio a scomparsa - WFUTURE15 500x200mm", 
+                    "Diffusore multidirezionale a 4 vie - WAQ1 300x300mm", 
+                    "Diffusore a flusso elicoidale - WBQE3Q 500x500mm", 
+                    "Diffusore quadrato con frontale chiuso - WLKA 200", 
+                    "Diffusore lineare a feritoie - WDLN40 L.800mm 3 Feritoie"])
+       }
 }
