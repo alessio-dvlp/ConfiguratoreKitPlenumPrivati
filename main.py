@@ -1358,7 +1358,7 @@ def riepilogo():
               else:
                      labelFlessibile = "tubazione flessibile isolata"
               st.caption(f"Per il tuo impianto sono necessari {st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø {st.session_state.diametroFlessibile}")
-              st.session_state.riepilogo_ordine += f"{st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø 150. "
+              st.session_state.riepilogo_ordine += f"{st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø {st.session_state.diametroFlessibile}. "
               # st.write(f":green[**+ {format(st.session_state.prezzoFlessibile, '.2f')}€**]")
               st.write()
        st.divider()
