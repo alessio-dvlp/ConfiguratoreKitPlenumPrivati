@@ -1438,14 +1438,19 @@ def riepilogo():
        with col1:
               st.caption("Scarica il libretto di istruzioni Widbox che ti guida passo passo nell'installazione del tuo impianto.")
        with col2:
-              with open("file/Libricino istruzioni Widbox.pdf", "rb") as pdf:
+              file_mapping = {
+              "150": "Libricino istruzioni Widbox.pdf",
+              "200": "Libricino istruzioni Widbox (D200).pdf"
+              }
+
+              with open("file/" + file_mapping[st.session_state.diametroFlessibile], "rb") as pdf:
                      st.download_button(
-                            label="Scarica PDF",
-                            data=pdf,
-                            file_name="Libricino istruzioni Widbox.pdf",
-                            mime="application/pdf",
-                            use_container_width=False,
-                            type="primary"
+                     label="Scarica PDF",
+                     data=pdf,
+                     file_name="Istruzioni Widbox.pdf",
+                     mime="application/pdf",
+                     use_container_width=False,
+                     type="primary"
                      )
        st.divider()
 
