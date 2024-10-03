@@ -7,6 +7,7 @@ import requests
 import random
 import string
 import time
+from datetime import datetime
 
 # Configurazione base pagina streamlit e CSS
 st.set_page_config(
@@ -878,9 +879,15 @@ def distanze(numeroPagina):
        for i in range(st.session_state.nStanze):
               with st.expander(f"**{st.session_state.elencoNomiStanze[i]}**", icon=":material/deployed_code:", expanded=True):
                      if st.session_state.locazioneImpianto == 'Abitazione':
-                            labelDistanza = "uscio/porta"
+                            if st.session_state.diametroFlessibile == "150":
+                                   labelDistanza = "uscio/porta"
+                            elif st.session_state.diametroFlessibile == "200":
+                                   labelDistanza = "centro della stanza" if ultimi_elementi[i][1] in [2, 4] else "uscio/porta"
                      else:
-                            labelDistanza = "centro della stanza" if ultimi_elementi[i][1] in [4, 5] else "uscio/porta"
+                            if st.session_state.diametroFlessibile == "150":
+                                   labelDistanza = "centro della stanza" if ultimi_elementi[i][1] in [4, 5] else "uscio/porta"
+                            elif st.session_state.diametroFlessibile == "200":
+                                   labelDistanza = "centro della stanza" if ultimi_elementi[i][1] in [2,4,5,6] else "uscio/porta"
                      distanza = st.text_input(f"Distanza in metri tra macchina e {labelDistanza}", key=f"{st.session_state.elencoNomiStanze[i]}{i+1}")
                      if distanza:
                             flagEmpty = False
@@ -1098,7 +1105,7 @@ def riepilogo():
        # Luogo Impianto
        st.subheader("Luogo impianto")
        st.caption(st.session_state.locazioneImpianto)
-       st.session_state.riepilogo_ordine += f"per {st.session_state.locazioneImpianto.lower()}. "
+       st.session_state.riepilogo_ordine += f"per {st.session_state.locazioneImpianto.lower()}.\n\n"
        st.divider()
 
        # Elementi di diffusione per stanza
@@ -1159,7 +1166,7 @@ def riepilogo():
                             st.session_state.prezzoElementiDiffusione += config.listino_prezzi_accessori[nome_associato]['prezzo'] + config.listino_prezzi_accessori[nome_associato]['prezzoPlenum']
                             st.caption(f"{nome_associato}, {colore_associato}")
                      
-                     st.session_state.riepilogo_ordine += f"{nome_associato}, {colore_associato} "
+                     st.session_state.riepilogo_ordine += f"{nome_associato}, {colore_associato} \n"
 
                      if st.session_state.sceltaControlloTemperatura == 0:
                             if 'prezzoSerranda' in config.listino_prezzi_accessori[nome_associato]:
@@ -1175,7 +1182,7 @@ def riepilogo():
                             st.session_state.riepilogo_ordine += "(serranda di regolazione inclusa). "
                      if nome_associato != "Diffusore circolare con frontale chiuso - WLCA 200" and nome_associato != "Diffusore quadrato con frontale chiuso - WLKA 200":
                             st.caption(f"Plenum in pannello preisolato incluso con 1 attacchi Ø {st.session_state.diametroFlessibile}")
-                            st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con 1 attacchi Ø {st.session_state.diametroFlessibile}. "
+                            st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con 1 attacchi Ø {st.session_state.diametroFlessibile}.\n"
 
        # Itera sulla lista di dati
        if 'prezzoElementiDiffusione' not in st.session_state:
@@ -1204,7 +1211,7 @@ def riepilogo():
                      
                      colore_associato = associazione_colori.get(numeroColore, 'Colore sconosciuto')
                      st.caption(f"{nome_associato}, {colore_associato}")
-                     st.session_state.riepilogo_ordine += f"{nome_associato}, {colore_associato} "
+                     st.session_state.riepilogo_ordine += f"{nome_associato}, {colore_associato}\n"
                      # Aggiungo cavalletti, tappi e eventuali kit di continuità
                      if nome_associato == "Diffusore lineare a scomparsa a singola feritoia - WDLAS40 L.1000mm":
                             st.session_state.prezzoElementiDiffusione += (config.listino_prezzi_accessori['Cavalletti']*2) + config.listino_prezzi_accessori['Tappi di chiusura']
@@ -1222,7 +1229,7 @@ def riepilogo():
                      if st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1] != 1:
                             if nome_associato != "Diffusore circolare con frontale chiuso - WLCA 200" and nome_associato != "Diffusore quadrato con frontale chiuso - WLKA 200":
                                    st.caption(f"Plenum in pannello preisolato incluso con 1 attacchi Ø {st.session_state.diametroFlessibile}")
-                                   st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con 1 attacchi Ø {st.session_state.diametroFlessibile}. "
+                                   st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con 1 attacchi Ø {st.session_state.diametroFlessibile}.\n"
                      
                      if st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1] >= 2:
                             numeroElementi = st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]-1
@@ -1230,7 +1237,7 @@ def riepilogo():
                      else:
                             if nome_associato != "Diffusore circolare con frontale chiuso - WLCA 200" and nome_associato != "Diffusore quadrato con frontale chiuso - WLKA 200":
                                    st.caption(f"Plenum in pannello preisolato incluso con {st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]} attacchi Ø {st.session_state.diametroFlessibile}")
-                                   st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con {st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]} attacchi Ø {st.session_state.diametroFlessibile}. "
+                                   st.session_state.riepilogo_ordine += f" - Plenum in pannello preisolato con {st.session_state.elencoNZonePerStanza[-st.session_state.nStanze:][contatore][1]} attacchi Ø {st.session_state.diametroFlessibile}.\n"
                      contatore += 1
        st.divider()
 
@@ -1240,14 +1247,14 @@ def riepilogo():
        with col1:
               if st.session_state.sceltaControlloTemperatura == 0:
                      st.caption("Controllo della temperatura manuale")
-                     st.session_state.riepilogo_ordine += " Controllo della temperatura manuale. "
+                     st.session_state.riepilogo_ordine += " Controllo della temperatura manuale.\n\n"
               else:
                      if st.session_state.sceltaTipologiaSistema == 0:
                             st.caption(f"Controllo della temperatura motorizzato cablato - include serranda bypass montata sul plenum macchina, centralina, {st.session_state.nStanze} cronotermostati, interfaccia di comunicazione, scatola stagna e cablatura sistema")
-                            st.session_state.riepilogo_ordine += f"Controllo della temperatura motorizzato cablato - include serranda bypass montata sul plenum macchina, centralina, {st.session_state.nStanze} cronotermostati, interfaccia di comunicazione, scatola stagna e cablatura sistema. "
+                            st.session_state.riepilogo_ordine += f"Controllo della temperatura motorizzato cablato - include serranda bypass montata sul plenum macchina, centralina, {st.session_state.nStanze} cronotermostati, interfaccia di comunicazione, scatola stagna e cablatura sistema.\n\n"
                      else:
                             st.caption(f"Controllo della temperatura motorizzato wireless - include serranda bypass montata sul plenum macchina centralina, {st.session_state.nStanze} cronotermostati, interfaccia di comunicazione, scatola stagna e cablatura sistema")
-                            st.session_state.riepilogo_ordine += f"Controllo della temperatura motorizzato wireless - include serranda bypass montata sul plenum macchina centralina, {st.session_state.nStanze} cronotermostati, interfaccia di comunicazione, scatola stagna e cablatura sistema. "
+                            st.session_state.riepilogo_ordine += f"Controllo della temperatura motorizzato wireless - include serranda bypass montata sul plenum macchina centralina, {st.session_state.nStanze} cronotermostati, interfaccia di comunicazione, scatola stagna e cablatura sistema.\n\n"
        with col2:
               if st.session_state.sceltaControlloTemperatura != 0:
                      if st.session_state.sceltaTipologiaSistema == 0:
@@ -1269,14 +1276,14 @@ def riepilogo():
        with col2:
               if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
                      st.caption(f"{config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['descrizione']}")
-                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['descrizione']} (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø {st.session_state.diametroFlessibile}). "
+                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['descrizione']} (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø {st.session_state.diametroFlessibile}).\n\n"
                      if st.session_state.sceltaControlloTemperatura == 1:
-                            st.session_state.riepilogo_ordine += "Attacchi motorizzati. "
+                            st.session_state.riepilogo_ordine += "Attacchi motorizzati.\n\n"
               else:
                      st.caption(f"{config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}")
-                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}. (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø {st.session_state.diametroFlessibile}). "
+                     st.session_state.riepilogo_ordine += f"Macchina {config.macchinaMitsubishi[f'BTU{int(st.session_state.tempBTUMitsubishi)}']['descrizione']}. (+ Plenum macchina con {st.session_state.sommaZone} attacchi Ø {st.session_state.diametroFlessibile}).\n\n"
                      if st.session_state.sceltaControlloTemperatura == 1:
-                            st.session_state.riepilogo_ordine += "Attacchi motorizzati. "
+                            st.session_state.riepilogo_ordine += "Attacchi motorizzati.\n\n"
               
 
               if st.session_state.diametroFlessibile == '150':
@@ -1306,7 +1313,7 @@ def riepilogo():
                      col1, col2 = st.columns([0.5,0.5])
                      with col1:
                             st.caption(f"{st.session_state.nomeComandoManualeMitsubishi}")
-                            st.session_state.riepilogo_ordine += f"{st.session_state.nomeComandoManualeMitsubishi}. "
+                            st.session_state.riepilogo_ordine += f"{st.session_state.nomeComandoManualeMitsubishi}.\n"
                      with col2:
                             st.write(":green[**+ 56.80€**]")
 
@@ -1314,7 +1321,7 @@ def riepilogo():
                             col1, col2 = st.columns([0.5,0.5])
                             with col1:
                                    st.caption("Hai integrato un modulo Wi-Fi al tuo impianto di climatizzazione")
-                                   st.session_state.riepilogo_ordine += "Modulo Wi-Fi incluso. "
+                                   st.session_state.riepilogo_ordine += "Modulo Wi-Fi incluso.\n"
                             with col2:
                                    st.write(":green[**+ 56.80€**]")
               st.divider()
@@ -1336,7 +1343,7 @@ def riepilogo():
               else:
                      coloreGriglia = "Alluminio Anodizzato"
               st.caption(f"La griglia di ripresa adatta al tuo impianto è una {st.session_state.dimensioneGriglia}. Colore {coloreGriglia}. Filtro e controtelaio inclusi nel prezzo finale.")
-              st.session_state.riepilogo_ordine += f"Griglia di ripresa portafiltro {st.session_state.dimensioneGriglia} - Colore {coloreGriglia} (Filtro e controtelaio inclusi). "
+              st.session_state.riepilogo_ordine += f"Griglia di ripresa portafiltro {st.session_state.dimensioneGriglia} - Colore {coloreGriglia} (Filtro e controtelaio inclusi).\n\n"
               st.session_state.prezzoGriglia = config.listino_prezzi_accessori[f'Griglia di ripresa {st.session_state.dimensioneGriglia} mm']['prezzo']
               if st.session_state.coloreGriglia == 0 or st.session_state.coloreGriglia == 1:
                      st.session_state.prezzoGriglia = st.session_state.prezzoGriglia * 1.15
@@ -1358,7 +1365,7 @@ def riepilogo():
               else:
                      labelFlessibile = "tubazione flessibile isolata"
               st.caption(f"Per il tuo impianto sono necessari {st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø {st.session_state.diametroFlessibile}")
-              st.session_state.riepilogo_ordine += f"{st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø {st.session_state.diametroFlessibile}. "
+              st.session_state.riepilogo_ordine += f"{st.session_state.scatoleFlessibile*10} metri di {labelFlessibile} Ø {st.session_state.diametroFlessibile}.\n\n"
               # st.write(f":green[**+ {format(st.session_state.prezzoFlessibile, '.2f')}€**]")
               st.write()
        st.divider()
@@ -1369,7 +1376,7 @@ def riepilogo():
               col1, col2 = st.columns([0.5,0.5])
               with col1:
                      st.caption("Hai richiesto l'installazione dell'impianto")
-                     st.session_state.riepilogo_ordine += "Installazione dell'impianto inclusa. "
+                     st.session_state.riepilogo_ordine += "Installazione dell'impianto inclusa.\n\n"
               with col2:
                      st.write(f":green[**+ {format(float(st.session_state.prezzoFinaleInstallazione), '.2f')}€**]")
               st.divider()
@@ -1390,7 +1397,7 @@ def riepilogo():
                             st.image(st.session_state.sceltaCopriclima)
                      with col2:
                             st.write(f"**Modello {modelloCopriclima} - Colore {coloreCopriclima}**")
-                            st.session_state.riepilogo_ordine += f"Copriclima modello {modelloCopriclima} - Colore {coloreCopriclima}. "
+                            st.session_state.riepilogo_ordine += f"Copriclima modello {modelloCopriclima} - Colore {coloreCopriclima}.\n\n"
                             st.caption("Nascondi la tua unità esterna e rendila più indiscreta esteticamente")
                             if st.session_state.tempBTUHaier and st.session_state.tempBTUHaier != None:
                                    st.session_state.prezzoCopriclima = config.macchinaHaier[f'BTU{int(st.session_state.tempBTUHaier)}']['prezzoCopriclima'] + 50
@@ -1405,7 +1412,7 @@ def riepilogo():
                             st.image("images/IonicRiepilogo.png")
                      with col2:
                             st.caption("Modulo di sanificazione attiva antibatterica con ionizzazione negativa priva di formazione di ozono.")
-                            st.session_state.riepilogo_ordine += "Ionizzatore incluso. "
+                            st.session_state.riepilogo_ordine += "Ionizzatore incluso.\n\n"
                             #st.write(f":green[**+ {format(st.session_state.prezzoIonizzatore, '.2f')}€**]")
               st.divider()
        
@@ -1416,7 +1423,7 @@ def riepilogo():
               st.session_state.prezzoAccessori = 0
        st.session_state.prezzoAccessori = 0
        st.subheader("Accessori in dotazione")
-       st.session_state.riepilogo_ordine += f"Accessori in dotazione: {st.session_state.sommaZone*2} fascette stringitubo, {st.session_state.numeroBarraFilettata} barre filettate, 15 dadi flangiati M8, 15 viti autoforanti 4,2x16mm, 6 Tasselli in ottone."
+       st.session_state.riepilogo_ordine += f"Accessori in dotazione: {st.session_state.sommaZone*2} fascette stringitubo, {st.session_state.numeroBarraFilettata} barre filettate, 15 dadi flangiati M8, 15 viti autoforanti 4,2x16mm, 6 Tasselli in ottone.\n"
        st.caption(f"{st.session_state.sommaZone*2} fascette stringitubo")
        if st.session_state.diametroFlessibile == '150':
               st.session_state.prezzoAccessori += float(st.session_state.sommaZone * 2) * 0.84
@@ -1487,22 +1494,34 @@ def riepilogo():
               if pagamentoBonificoBancario == 'Bonifico Bancario':
                      alphanumeric_characters = string.ascii_letters + string.digits
                      code = ''.join(random.choice(alphanumeric_characters) for _ in range(6))
-                     configuratoreNtfy = st.secrets["ConfiguratoreNTFY"]
-                     notifica = f"""
-                     IBAN: IT40H0200830290000106048658
-                     Codice alfanumerico da inserire nella causale del bonifico: {code.upper()}
-                     Importo: {format((float(st.session_state.prezzoFinale)),'.2f')}€\n
-                     Ordine:\n{st.session_state.riepilogo_ordine}\n
-                     """ 
+                     headers = {
+                     "Authorization": f"Bearer {st.secrets['NOTION_TOKEN']}",
+                     "Content-Type": "application/json",
+                     "Notion-Version": "2022-06-28"
+                     }
+
+                     data = {
+                     "parent": { "database_id": st.secrets['DATABASE_ID'] },
+                     "properties": {
+                            "Importo": {"rich_text": [{"text": {"content": f"{format((float(st.session_state.prezzoFinale)),'.2f')}€"}}]},
+                            "Data Ordine": {"date": {"start": datetime.now().strftime("%Y-%m-%d")}},
+                            "Ordine": {"rich_text": [{"text": {"content": st.session_state.riepilogo_ordine}}]},
+                            "Email": {"email": Mail},
+                            "Codice Causale": {"rich_text": [{"text": {"content": code.upper()}}]},
+                            "Nome": {"title": [{ "text": {"content": Nome}}]},
+                            "Numero di telefono": {"phone_number": NumeroDiTelefono},
+                            }
+                     }
+
                      if st.button("**RICEVI MAIL**", type="primary", use_container_width=True):
                             if Mail != "":
                                    try:
-                                          requests.post(configuratoreNtfy,
-                                                 data=notifica.encode('utf-8'),
-                                                 headers={
-                                                        "Title": f"{Nome} - {Mail} - {NumeroDiTelefono}",
-                                                 })
-                                          st.success('Riceverai a breve una mail con i dati per effettuare il bonifico', icon=":material/mail:")
+                                          url = "https://api.notion.com/v1/pages"
+                                          requests.post(url, headers=headers, json=data)
+                                          @st.dialog("Ordine inviato!")
+                                          def ordineInviato():
+                                                 st.success('Riceverai a breve una mail con i dati per effettuare il bonifico', icon=":material/mail:")
+                                          ordineInviato()
                                    except Exception as e:
                                           st.error("Errore nell'invio della mail. Contatta il supporto [cliccando qui](https://www.widair.com/contattaci) o riprova", icon=":material/mail:")
                             else:
@@ -1524,7 +1543,7 @@ def riepilogo():
                                    }],
                                    mode='payment',
                                    success_url='https://widair.com/content/7-conferma-ordine',
-                                   cancel_url='https://widair.com',
+                                   cancel_url='https://impiantoclimatizzazioneconfiguratore.streamlit.app',
                                    shipping_address_collection={
                                           'allowed_countries': ['IT'],  # Paesi in cui è consentita la spedizione
                                    },
