@@ -149,6 +149,7 @@ def caricamento():
 
 def tipologiaImpianto(numeroPagina):
        st.caption(f"Pagina {numeroPagina} di 14")
+       st.title("Impianto di climatizzazione")
        st.image("images/WidboxHomepage.png")
        st.write("**WIDBOX - Il sistema di climatizzazione canalizzata che ti offre Widair.**")
        st.write("Il widbox è adatto ad abitazioni/locali commerciali che dovranno essere controsoffittati.")
